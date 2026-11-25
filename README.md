@@ -19,6 +19,8 @@
 
 上述数据来自本项目的合成 HTTP 任务。可查看[逐题预测](experiments/recorded/expanded/records/results.json)和[蒸馏分布对照](experiments/recorded/expanded/records/teacher_kl.json)。
 
+追加的 1.08B 教师实验使用相同的 13.522M RL 学生起点。1B 蒸馏学生在原 322 题上答对 **314** 道，同轮纯 CE 答对 **298** 道。在 48 道带干扰的新题上分别答对 **12** 道和 **23** 道。 [1B 实测结论](docs/share.md#1b-教师的-autodl-实测结论) · [原始记录](experiments/recorded/teacher-1b/records)
+
 ## 项目结构
 
 ```text
@@ -34,7 +36,7 @@ minimind-frontend/
 │   ├── verify.py           无需 GPU 的数据和结果校验
 │   ├── inputs.json         外部输入和 SHA-256
 │   ├── requirements.txt   实验依赖
-│   └── recorded/           三轮实测日志、结果、清单和截图
+│   └── recorded/           四轮实测日志、结果、清单和截图
 └── docs/
     └── share.md            完整分享稿和可执行示例
 ```

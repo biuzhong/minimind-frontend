@@ -8,7 +8,7 @@
 | --- | --- |
 | 5 分钟 | 用一题讲四阶段，再看不同场景的实测对照 |
 | 16 分钟 | 四个阶段各看一段代码、一张截图和一项效果指标 |
-| 6 分钟 | 比较更大教师、RL 学生与纯 CE 对照 |
+| 6 分钟 | 比较两位教师和纯 CE，看同类题与带干扰题的表现 |
 | 4 分钟 | 看 AutoDL 运行记录及如何复跑 |
 | 4 分钟 | 用女娲 Skill 演示另一种「蒸馏」 |
 
@@ -324,6 +324,41 @@ MiniCPM5-1B 从公开权重出发，用已有的 3,200 条任务样本微调最�
 
 MiniCPM5 和 MiniMind 的 tokenizer 不同。两位教师各用自己的 tokenizer，对同一组候选 JSON 文本计算分数。然后在候选答案这一层比较概率，例如让学生学习教师给 `retry` 和 `stop` 分配的相对概率。最后测试时仍让学生自由生成，再用同一套 JSON 合约打分。之前同词表的逐 token 蒸馏结果也一并保留。[1B 实验代码](../experiments/distill_1b.py) · [MiniCPM5-1B 模型说明](https://huggingface.co/openbmb/MiniCPM5-1B)
 
+### 1B 教师的 AutoDL 实测结论
+
+**1B 教师蒸馏提高了同类题成绩，带干扰的新题表现则低于纯 CE。** AutoDL 实测教师共有 **1,080,632,832** 个参数，更新了 **56,630,784** 个参数。教师微调和三个学生分支各跑 200 步。学生部署时仍是 13.522M 参数。本轮从 [0a94dc5 源码提交](https://github.com/biuzhong/minimind-frontend/commit/0a94dc57941abca9dd6b05ca6121b844efaf974e) 运行，权重和数据哈希保存在实验清单中。[训练日志](../experiments/recorded/teacher-1b/records/training.log) · [实验清单](../experiments/recorded/teacher-1b/records/manifest.json)
+
+![AutoDL JupyterLab 的教师参数量、SFT 命令和 200 步训练日志](../experiments/recorded/teacher-1b/screenshots/01-jupyter-teacher-sft.png)
+
+![AutoDL JupyterLab 中的教师候选答案概率计算和三个学生训练分支](../experiments/recorded/teacher-1b/screenshots/02-jupyter-answer-distillation.png)
+
+| 模型 | 原 322 道留出题完整通过 | 新 48 道带干扰题完整通过 | 新 24 对题两问都对 |
+| --- | ---: | ---: | ---: |
+| 预训练学生 | 0/322 | 0/48 | 0/24 |
+| SFT 学生 | 238/322 | 12/48 | 1/24 |
+| RL 学生 | 227/322 | 11/48 | 1/24 |
+| 63.91M 教师 | 322/322 | 21/48 | 9/24 |
+| 1.08B 教师 | 322/322 | 21/48 | 7/24 |
+| 同轮纯 CE 学生 | 298/322 | 23/48 | 9/24 |
+| 63.91M 教师答案分布蒸馏学生 | 293/322 | 16/48 | 5/24 |
+| 1.08B 教师答案分布蒸馏学生 | **314/322** | **12/48** | **1/24** |
+
+![AutoDL JupyterLab 中的新旧题通过数和分场景成对通过数](../experiments/recorded/teacher-1b/screenshots/03-jupyter-scenario-results.png)
+
+原题里，1B 蒸馏相对同轮纯 CE 多答对 **16 道 400 参数题**、**8 道 429 限流题**，少答对 **8 道 503 策略题**，净增 16 道。新题里，1B 教师在登录续期和读写重试上的成对通过数分别是 **4/4 和 3/4**，学生只有 **1/4 和 0/4**。素材权限和接口限流上，1B 教师自己也是 **0/4**，原教师分别是 **3/4 和 2/4**。这组比较反映两位教师在当前训练配置下的差异，两位教师也有不同的模型架构、词表和预训练经历。[原题分场景计数](../experiments/recorded/teacher-1b/records/original-summary.json) · [新题分场景计数](../experiments/recorded/teacher-1b/records/challenge-summary.json)
+
+下面三条是为投屏选取的实测样例。旧题的 400 错误码修正和新题被无关日志带偏，都可以从输出上直接看出来。
+
+| 题目 | 标准答案 | 同轮纯 CE | 1B 教师 | 1B 蒸馏学生 |
+| --- | --- | --- | --- | --- |
+| **参数校验**<br>今天在收藏页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。 | `{"code":400,"action":"fix"}` | `{"code":4,"action":"fix"}` | `{"code":400,"action":"fix"}` | `{"code":400,"action":"fix"}` |
+| **同步提交失败**<br>同步面板联调。上一条日志是别的请求，返回 HTTP 200。本次为 HTTP 503，method=POST。只返回一行 JSON，包含 code 和 action。 | `{"code":503,"action":"stop"}` | `{"code":503,"action":"stop"}` | `{"code":503,"action":"stop"}` | `{"code":200,"action":"ok"}` |
+| **素材读取权限**<br>素材库读取联调。上一条日志是别的请求，返回 HTTP 200。本次为 HTTP 403，method=GET。只返回一行 JSON，包含 code 和 action。 | `{"code":403,"action":"deny"}` | `{"code":403,"action":"deny"}` | `{"code":403,"action":"retry"}` | `{"code":403,"action":"retry"}` |
+
+在 503 样例里，教师选对了当前请求，学生却从历史日志提取了 200。在 403 样例里，教师和学生都把权限不足判断为重试。把这两个结果和原题的提升一起展示，能说明教师示范的质量、学生能否迁移，以及评测题如何设计，都会影响最终看见的收益。[原 322 题完整生成](../experiments/recorded/teacher-1b/records/original-results.json) · [新 48 题完整生成](../experiments/recorded/teacher-1b/records/challenge-results.json)
+
+### 1B 实验复跑命令
+
 ```bash
 BASE="$HOME/minimind-runs"
 mkdir -p "$BASE"
@@ -339,13 +374,14 @@ python experiments/distill_1b.py \
   --output "$BASE/1b" 2>&1 | tee "$BASE/1b.log"
 ```
 
-## 三轮实验放在一起怎么讲
+## 四轮实验放在一起怎么讲
 
 | 版本 | 实际执行的路线 | 留下了什么 |
 | --- | --- | --- |
 | 首轮官方权重演示 | 预训练、SFT、GRPO 加载官方权重做推理，另用 512 条样本训练纯 CE 和蒸馏。 | 用来走通 GPU 云端流程。四份模型在开场的单行 JSON 题上都没有通过。 [首轮实测](../experiments/recorded/README.md) |
 | 小样本从零训练 | 4.98M 学生从随机权重走完四步，13.52M 自训教师参与蒸馏。 | 固定 33 题，完整通过数为预训练 0、SFT 28、RL 29、蒸馏 28。 [从零训练小样本](../experiments/recorded/small/records/results.json) |
 | 本次扩大实验 | 13.52M 学生从随机权重走完四步，在同词表的 63.91M 教师上做额外 SFT 后蒸馏。 | 训练含 5,760 条预训练文本、1,952 条 SFT 对话、320 条 RL 条件题及 3,200 条教师和蒸馏用样本。主稿采用这版的 322 题和截图。 [数据与权重血缘](../experiments/recorded/expanded/records/lineage.json) |
+| 1B 教师对照 | 复用 13.52M RL 学生，比较纯 CE、63.91M 教师和 1.08B 教师的答案分布蒸馏。 | 使用原 322 题和 48 道带干扰的新题，保留按场景统计和逐题回答。 [完整记录](../experiments/recorded/teacher-1b/records) |
 
 从小样本放大以后，差异要放到对应的训练目标上读。续写 CE 下降能证明续写任务变好，JSON 解析率说明格式学习，规则题通过数用于判断奖励带来的业务行为。蒸馏用同一起点的纯 CE 组做参照，减少把「多训了一轮」误归因给教师的可能。
 

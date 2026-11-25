@@ -1,0 +1,470 @@
+{
+  "pretrain": {
+    "policy-401": {
+      "total": 33,
+      "json": 0,
+      "passed": 0
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 0,
+      "passed": 0
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 0,
+      "passed": 0
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 0,
+      "passed": 0
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 0,
+      "passed": 0
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 0,
+      "passed": 0
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 0,
+      "passed": 0
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 0,
+      "passed": 0
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 0,
+      "passed": 0
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 0,
+      "passed": 0
+    }
+  },
+  "sft": {
+    "policy-401": {
+      "total": 33,
+      "json": 33,
+      "passed": 17
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 33,
+      "passed": 16
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 32,
+      "passed": 16
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 32,
+      "passed": 25
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 32,
+      "passed": 19
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 17,
+      "passed": 17
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    }
+  },
+  "rl": {
+    "policy-401": {
+      "total": 33,
+      "json": 33,
+      "passed": 16
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 33,
+      "passed": 13
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 32,
+      "passed": 16
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 32,
+      "passed": 30
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 32,
+      "passed": 0
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 29,
+      "passed": 24
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    }
+  },
+  "teacher_64m": {
+    "policy-401": {
+      "total": 33,
+      "json": 33,
+      "passed": 33
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 33,
+      "passed": 33
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    }
+  },
+  "original_kd64m": {
+    "policy-401": {
+      "total": 33,
+      "json": 33,
+      "passed": 24
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 33,
+      "passed": 16
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 32,
+      "passed": 18
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 32,
+      "passed": 20
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    }
+  },
+  "scenes_ce": {
+    "policy-401": {
+      "total": 33,
+      "json": 33,
+      "passed": 33
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 33,
+      "passed": 33
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 32,
+      "passed": 16
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 32,
+      "passed": 24
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    }
+  },
+  "scenes_kd64m": {
+    "policy-401": {
+      "total": 33,
+      "json": 33,
+      "passed": 33
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 33,
+      "passed": 25
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 32,
+      "passed": 15
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 32,
+      "passed": 28
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    }
+  },
+  "scenes_kd1b": {
+    "policy-401": {
+      "total": 33,
+      "json": 33,
+      "passed": 33
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 33,
+      "passed": 25
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    }
+  },
+  "teacher_1b": {
+    "policy-401": {
+      "total": 33,
+      "json": 33,
+      "passed": 33
+    },
+    "policy-503": {
+      "total": 33,
+      "json": 33,
+      "passed": 33
+    },
+    "basic-200": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-400": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-401": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-403": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-404": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-409": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-429": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    },
+    "basic-503": {
+      "total": 32,
+      "json": 32,
+      "passed": 32
+    }
+  }
+}

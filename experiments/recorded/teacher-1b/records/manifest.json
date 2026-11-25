@@ -1,0 +1,32 @@
+{
+  "teacher": "openbmb/MiniCPM5-1B",
+  "revision": "ac83f813ba7da263c51a9f3ec37c2072597e54af",
+  "base_config_sha256": "6a6509b646cb3169616c5ffc3196e7ccaf9d4d6bc17b266581d241a31c217714",
+  "teacher_update_sha256": "d2c18d78ef121a9ecd244076ace496b0b3a7e2543258832cbc757e7428dae0f4",
+  "training_data_sha256": "aeedf15d00550e0028c3b54cfa54a1fb3cb30ab5eefd86ada1fcaf0b51cdeabf",
+  "training_examples": 3200,
+  "temperature": 2.0,
+  "answers": [
+    "{\"code\":200,\"action\":\"ok\"}",
+    "{\"code\":400,\"action\":\"fix\"}",
+    "{\"code\":401,\"action\":\"login\"}",
+    "{\"code\":401,\"action\":\"refresh\"}",
+    "{\"code\":403,\"action\":\"deny\"}",
+    "{\"code\":404,\"action\":\"missing\"}",
+    "{\"code\":409,\"action\":\"conflict\"}",
+    "{\"code\":429,\"action\":\"wait\"}",
+    "{\"code\":503,\"action\":\"retry\"}",
+    "{\"code\":503,\"action\":\"stop\"}"
+  ],
+  "seed": 42,
+  "weights": {
+    "pretrain": "bfd01c4f104f4b8d4a7b896fcd6e1235ef44d1d48c389fc6bba257374d005e66",
+    "sft": "d81a4a5ae8677f5e045466dcd364bdce97cee886bc2c540dac561c2185ee52c1",
+    "rl": "b04697516a804ea44bedfc285c0871fd8489099eeae1a98a86860b84ad064821",
+    "teacher_64m": "c4a685a3b07a80d1ca6f57ef0e3bab2dbd82e14a8f81b062c777099e3238c9c7",
+    "original_kd64m": "4e4bd842ba40d37e4073076a963f50d8c032170ffb236bff61c105af3e69a3a9",
+    "scenes_ce": "b5811db3434cf19352dcc7145f9c4d5a65eea757c3773862e3f6f95d6c02950f",
+    "scenes_kd64m": "36d180e8efc064449c1ed1791dfd60103b7a6e8f6004ee315cbd3a3e9078fca6",
+    "scenes_kd1b": "31e14dc8b9b53cae35d27e789ef63c9812f122fdd23615f21de473feea122b8d"
+  }
+}

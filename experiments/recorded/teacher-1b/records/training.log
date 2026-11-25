@@ -1,0 +1,93 @@
+GitHub commit 0a94dc57941abca9dd6b05ca6121b844efaf974e
+/root/autodl-tmp/minimind-1b/teacher-base/model-00000-of-00001.safetensors: OK
+2026-11-26T01:28:49+08:00
+name, memory.total [MiB], driver_version
+NVIDIA GeForce RTX 4080 SUPER, 32760 MiB, 595.71.05
+`torch_dtype` is deprecated! Use `dtype` instead!
+TEACHER total=1,080,632,832 trainable=56,630,784 examples=3200
+teacher_sft step=1 loss=1.2973
+teacher_sft step=20 loss=0.0276
+teacher_sft step=40 loss=0.0019
+teacher_sft step=60 loss=0.0517
+teacher_sft step=80 loss=0.0386
+teacher_sft step=100 loss=0.0009
+teacher_sft step=120 loss=0.0002
+teacher_sft step=140 loss=0.0001
+teacher_sft step=160 loss=0.0002
+teacher_sft step=180 loss=0.0002
+teacher_sft step=200 loss=0.0001
+You're using a PreTrainedTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+targets-1b targets=8/3200
+targets-1b targets=320/3200
+targets-1b targets=640/3200
+targets-1b targets=960/3200
+targets-1b targets=1280/3200
+targets-1b targets=1600/3200
+targets-1b targets=1920/3200
+targets-1b targets=2240/3200
+targets-1b targets=2560/3200
+targets-1b targets=2880/3200
+targets-1b targets=3200/3200
+targets-64m targets=8/3200
+targets-64m targets=320/3200
+targets-64m targets=640/3200
+targets-64m targets=960/3200
+targets-64m targets=1280/3200
+targets-64m targets=1600/3200
+targets-64m targets=1920/3200
+targets-64m targets=2240/3200
+targets-64m targets=2560/3200
+targets-64m targets=2880/3200
+targets-64m targets=3200/3200
+scenes_ce step=1 loss=0.0051 ce=0.0051
+scenes_ce step=20 loss=0.0329 ce=0.0329
+scenes_ce step=40 loss=0.0050 ce=0.0050
+scenes_ce step=60 loss=0.0058 ce=0.0058
+scenes_ce step=80 loss=0.0070 ce=0.0070
+scenes_ce step=100 loss=0.0035 ce=0.0035
+scenes_ce step=120 loss=0.0014 ce=0.0014
+scenes_ce step=140 loss=0.0011 ce=0.0011
+scenes_ce step=160 loss=0.0012 ce=0.0012
+scenes_ce step=180 loss=0.0013 ce=0.0013
+scenes_ce step=200 loss=0.0014 ce=0.0014
+scenes_kd64m step=1 loss=0.0333 ce=0.0051
+scenes_kd64m step=20 loss=1.0056 ce=0.0631
+scenes_kd64m step=40 loss=0.0709 ce=0.0103
+scenes_kd64m step=60 loss=0.2827 ce=0.0362
+scenes_kd64m step=80 loss=0.0377 ce=0.0077
+scenes_kd64m step=100 loss=0.0031 ce=0.0042
+scenes_kd64m step=120 loss=0.0021 ce=0.0031
+scenes_kd64m step=140 loss=0.0019 ce=0.0029
+scenes_kd64m step=160 loss=0.0023 ce=0.0032
+scenes_kd64m step=180 loss=0.0029 ce=0.0042
+scenes_kd64m step=200 loss=0.0030 ce=0.0044
+scenes_kd1b step=1 loss=0.0571 ce=0.0051
+scenes_kd1b step=20 loss=0.7947 ce=0.0524
+scenes_kd1b step=40 loss=0.0171 ce=0.0078
+scenes_kd1b step=60 loss=0.0768 ce=0.0093
+scenes_kd1b step=80 loss=0.0639 ce=0.0112
+scenes_kd1b step=100 loss=0.0109 ce=0.0072
+scenes_kd1b step=120 loss=0.0120 ce=0.0055
+scenes_kd1b step=140 loss=0.0052 ce=0.0039
+scenes_kd1b step=160 loss=0.0084 ce=0.0054
+scenes_kd1b step=180 loss=0.0076 ce=0.0042
+scenes_kd1b step=200 loss=0.0085 ce=0.0059
+pretrain: 0/322 full contract, JSON 0/322, reward 0.000
+sft: 238/322 full contract, JSON 307/322, reward 2.467
+rl: 227/322 full contract, JSON 319/322, reward 2.493
+teacher_64m: 322/322 full contract, JSON 322/322, reward 2.800
+original_kd64m: 270/322 full contract, JSON 322/322, reward 2.637
+scenes_ce: 298/322 full contract, JSON 322/322, reward 2.708
+scenes_kd64m: 293/322 full contract, JSON 322/322, reward 2.717
+scenes_kd1b: 314/322 full contract, JSON 322/322, reward 2.783
+pretrain: 0/48 full contract, JSON 0/48, reward 0.000
+sft: 12/48 full contract, JSON 37/48, reward 1.448
+rl: 11/48 full contract, JSON 48/48, reward 1.738
+teacher_64m: 21/48 full contract, JSON 48/48, reward 2.158
+original_kd64m: 19/48 full contract, JSON 48/48, reward 1.858
+scenes_ce: 23/48 full contract, JSON 48/48, reward 1.985
+scenes_kd64m: 16/48 full contract, JSON 48/48, reward 1.910
+scenes_kd1b: 12/48 full contract, JSON 48/48, reward 1.729
+EXPERIMENT COMPLETE
+2026-11-26T01:31:52+08:00

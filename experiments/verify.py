@@ -1,6 +1,7 @@
 """Verify the written evidence and regenerated fixtures without loading a model."""
 
 import ast
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -77,6 +78,24 @@ def check_challenge():
                for score in scores.values())
 
 
+def check_1b_results():
+    directory = RECORDS / "teacher-1b" / "records"
+    manifest = read(directory, "manifest.json")
+    training = RECORDS / "expanded" / "records" / "teacher_sft.jsonl"
+    assert hashlib.sha256(training.read_bytes().replace(b"\r\n", b"\n")).hexdigest() == manifest["training_data_sha256"]
+    assert manifest["training_examples"] == 3200
+    assert (directory / "exit-code").read_text(encoding="utf8").strip() == "0"
+    original = read(directory, "original-results.json")
+    challenge = read(directory, "challenge-results.json")
+    for stages, count in ((original, 322), (challenge, 48)):
+        assert all(len(stage["examples"]) == count for stage in stages)
+    assert group_scores(original, recorded_family) == read(directory, "original-summary.json")
+    summary = group_scores(challenge, lambda row: row["family"])
+    assert summary == read(directory, "challenge-summary.json")
+    assert [sum(group["pairs_passed"] for group in summary[stage].values()) for stage in
+            ("scenes_ce", "scenes_kd64m", "scenes_kd1b")] == [9, 5, 1]
+
+
 def check_links():
     for source in (ROOT / "README.md", ROOT / "README_en.md", ROOT / "docs/share.md",
                    RECORDS / "README.md"):
@@ -94,5 +113,6 @@ if __name__ == "__main__":
     check_data()
     check_results()
     check_challenge()
+    check_1b_results()
     check_links()
-    print("PASS: datasets, 322 recorded questions per stage, 48 new challenge questions, links, and syntax.")
+    print("PASS: datasets, original and 1B experiment outputs, paired scores, links, and syntax.")
