@@ -23,7 +23,10 @@ python experiments/verify.py
 | Official snapshots with fresh CE and distillation | `python experiments/run.py official` |
 | Complete small training chain | `python experiments/run.py from-scratch` |
 | Expanded run with held-out teacher KL | `python experiments/run.py expanded` |
+| Rescore recorded answers by HTTP scenario without loading a model | `python experiments/evaluate_scenarios.py recorded` |
 
 Use `--run-dir PATH` to choose storage and `--resume --run-dir PATH` to resume. `--prepare-only` snapshots code without downloads or GPU use. Run directories keep weights under `source/out/` and logs and evaluations under `records/`.
+
+The [scenario evaluation and 1B teacher walkthrough](docs/share.md#多个前端场景的四阶段实测) documents the six paired test families and the cross-tokenizer comparison using MiniCPM5-1B.
 
 The upstream project is [MiniMind](https://github.com/jingyaogong/minimind). Code uses [Apache-2.0](LICENSE). Downloaded model and data assets retain their upstream terms.

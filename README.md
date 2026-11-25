@@ -1,6 +1,6 @@
 # minimind-frontend
 
-面向前端开发者的 MiniMind 训练实验。用同一条 HTTP 401 请求对比预训练、SFT、GRPO 和白盒蒸馏。纯 CE 对照用于判断多训练一轮和加入教师信号分别带来的变化。
+面向前端开发者的 MiniMind 训练实验。从一条 HTTP 401 请求讲起，再用权限、冲突、限流和重试等场景对比预训练、SFT、GRPO 和蒸馏。纯 CE 对照用于判断多训练一轮和加入教师信号分别带来的变化。
 
 [中文分享稿](docs/share.md) · [English README](README_en.md) · [实跑记录](experiments/recorded/README.md)
 
@@ -29,6 +29,8 @@ minimind-frontend/
 ├── scripts/                阶段权重串联、数据生成及推理评测
 ├── experiments/
 │   ├── run.py              统一复现入口
+│   ├── evaluate_scenarios.py  分场景评测与 48 道额外留出题
+│   ├── distill_1b.py       MiniCPM5-1B 微调与跨词表蒸馏对照
 │   ├── verify.py           无需 GPU 的数据和结果校验
 │   ├── inputs.json         外部输入和 SHA-256
 │   ├── requirements.txt   实验依赖
@@ -67,6 +69,7 @@ python experiments/run.py expanded --prepare-only
 | `python experiments/run.py official` | 加载官方预训练、SFT、GRPO 快照，再实训纯 CE 和白盒蒸馏组 |
 | `python experiments/run.py from-scratch` | 4.98M 学生走完整训练链路，13.52M 教师也从随机权重训练 |
 | `python experiments/run.py expanded` | 13.52M 学生走完整链路，加上 64M 教师微调、纯 CE、322 题生成对照与 KL 评测 |
+| `python experiments/evaluate_scenarios.py recorded` | 从实测记录复算各阶段的分场景成绩，无需加载模型 |
 
 每次运行使用独立的 Git 源码快照，默认保存到 `runs/<实验>-<时间>`。AutoDL 上可把 `--run-dir` 指到数据盘。下面给出完整主实验和中断后的续跑命令，分别在新建实验和恢复时使用。
 
@@ -85,6 +88,8 @@ python experiments/run.py expanded --run-dir "$HOME/minimind-runs/expanded" --re
 - `source/out/` 保存可重新加载的权重。`records/*.log` 保存训练输出。
 
 开场的 HTTP 401 题位于扩大实验各阶段的 `examples[274]`。可按[分享稿里的逐阶段示例](docs/share.md#stage-examples)逐段执行训练，再打印同一道题的四个回答。
+
+分享稿还包含 [多场景的同题四阶段输出和 1B 教师复跑命令](docs/share.md#多个前端场景的四阶段实测)。
 
 ### 外部输入与复现范围
 

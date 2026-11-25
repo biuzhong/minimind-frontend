@@ -6,7 +6,7 @@
 
 | 时间 | 分享安排 |
 | --- | --- |
-| 5 分钟 | 同一道题看四段真实回答 |
+| 5 分钟 | 用一题讲四阶段，再看不同场景的实测对照 |
 | 16 分钟 | 四个阶段各看一段代码、一张截图和一项效果指标 |
 | 6 分钟 | 比较更大教师、RL 学生与纯 CE 对照 |
 | 4 分钟 | 看 AutoDL 运行记录及如何复跑 |
@@ -264,6 +264,80 @@ RL 学生和纯 CE 对照在两种条件下都选 `login`。蒸馏学生在有�
 | 白盒蒸馏 | 256/256 | 230/256 | 66/66 | 40/66 |
 
 ![AutoDL 浏览器终端的本轮测试汇总](../experiments/recorded/expanded/screenshots/06-jupyter-effects.png)
+
+## 多个前端场景的四阶段实测
+
+以下题面与四阶段输出都来自同一份 AutoDL 逐题记录。每道题在各阶段使用同一个输入。403、409 和 429 是三道独立问题，两个 503 问题只改了请求方法。预训练列展示原输出的开头，其余单元格展示完整回答。[逐题原始输出，含教师与纯 CE](../experiments/recorded/expanded/records/results.json)
+
+| 场景与题面 | 参考答案 | 预训练 | SFT | RL | 蒸馏 |
+| --- | --- | --- | --- | --- | --- | --- |
+| **403 质检权限**<br>今天在质检页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。 | `{"code":403,"action":"deny"}` | `响应响应码故障…` | `{"code":403,"action":"deny"}` | `{"code":403,"action":"deny"}` | `{"code":403,"action":"deny"}` |
+| **409 导出冲突**<br>今天在导出页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。 | `{"code":409,"action":"conflict"}` | `响应响应码故障…` | `{"code":409,"action":"conflict"}` | `{"code":409,"action":"login"}` | `{"code":409,"action":"conflict"}` |
+| **429 请求限流**<br>今天在导出页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。 | `{"code":429,"action":"wait"}` | `响应响应码故障…` | `{"code":4,"action":"}` | `{"code":4,"action":"login"}` | `{"code":4,"action":"ok"}` |
+| **503 读取失败**<br>线上导出接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。 | `{"code":503,"action":"retry"}` | `响应故障故障…` | `{"code":503,"action":"retry"}` | `{"code":503,"action":"retry"}` | `{"code":503,"action":"retry"}` |
+| **503 提交失败**<br>线上导出接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。 | `{"code":503,"action":"stop"}` | `响应故障故障…` | `{"code":503,"action":"retry"}` | `{"code":503,"action":"retry"}` | `{"code":503,"action":"retry"}` |
+
+403 用来展示 SFT 后能按约定交付，409 用来展示 RL 后可能丢掉原本答对的能力。409 的纯 CE 学生也答对了。503 的 GET / POST 这一对，纯 CE 学生分别答 `retry` / `stop`，蒸馏学生两次都答 `retry`。429 那题则显示，JSON 能解析以后，状态码和动作仍可能都错。
+
+把同类题全部算进去，才能知道例子所展示的变化有多普遍。下面按原始题目的参考状态码分组，每格是完整通过数。401 和 503 只统计有额外条件的策略题，另外三列统计基础题。
+
+| 权重 | 401 登录 | 403 权限 | 409 冲突 | 429 限流 | 503 重试 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 预训练 | 0/33 | 0/32 | 0/32 | 0/32 | 0/33 |
+| SFT | 17/33 | 32/32 | 19/32 | 17/32 | 16/33 |
+| RL | 16/33 | 32/32 | 0/32 | 24/32 | 13/33 |
+| 63.91M 教师 | 33/33 | 32/32 | 32/32 | 32/32 | 33/33 |
+| 纯 CE | 20/33 | 32/32 | 32/32 | 24/32 | 25/33 |
+| 蒸馏 | 24/33 | 32/32 | 32/32 | 20/32 | 16/33 |
+
+蒸馏组在 401 上比纯 CE 多答对 4 道。在 503 条件题和 429 限流题上，纯 CE 的通过数更高。组内分享可以把 401 和 503 两组成对结果一起投屏，再用上表解释为什么一道成功案例不足以说明整体效果。
+
+### 为 1B 教师准备的额外留出评测
+
+新增 **6 类、24 对、48 道**题，覆盖登录续期、读写重试、素材权限、表单提交、接口限流和草稿保存。每对题只变一项当前条件，题面混入历史请求的状态码，检查模型能否抓住当前请求。仍沿用实验的 `code` / `action` 合约。
+
+| 场景 | 一对题中改变的条件 | 期望动作 |
+| --- | --- | --- |
+| 登录续期 | 401 时 `refresh_token=present` / `absent` | `refresh` / `login` |
+| 读写重试 | 503 时 `method=GET` / `POST` | `retry` / `stop` |
+| 素材权限 | 当前返回 403 / 404 | `deny` / `missing` |
+| 表单提交 | 当前返回 400 / 409 | `fix` / `conflict` |
+| 接口限流 | 当前 GET 返回 429 / 503 | `wait` / `retry` |
+| 草稿保存 | 当前返回 200 / 409 | `ok` / `conflict` |
+
+在 AutoDL 上用同一批新题评估各阶段、两个教师和两路蒸馏学生。每对都答对才算成对通过，同时保留单题正确率与逐题原文。[场景评测代码](../experiments/evaluate_scenarios.py)
+
+```bash
+# 从已保存的 AutoDL 记录复算上面的分场景成绩
+python experiments/evaluate_scenarios.py recorded
+
+# 在已有扩大实验权重的 AutoDL checkout 上评测新题
+cd "$HOME/minimind-runs/expanded/source"
+python experiments/evaluate_scenarios.py challenge \
+  --run-dir ../records \
+  --output "$HOME/minimind-runs/scenarios"
+```
+
+### 1B 教师如何参与对照
+
+MiniCPM5-1B 从公开权重出发，用已有的 3,200 条任务样本微调最后两层 Transformer 和最终归一化层。这一轮复用上一轮的 13.522M RL 权重，给三份学生相同的样本、顺序和更新次数。纯 CE 只学习标准答案，另外两组分别加 63.91M 教师和 1B 教师的答案概率。
+
+MiniCPM5 和 MiniMind 的 tokenizer 不同。两位教师各用自己的 tokenizer，对同一组候选 JSON 文本计算分数。然后在候选答案这一层比较概率，例如让学生学习教师给 `retry` 和 `stop` 分配的相对概率。最后测试时仍让学生自由生成，再用同一套 JSON 合约打分。之前同词表的逐 token 蒸馏结果也一并保留。[1B 实验代码](../experiments/distill_1b.py) · [MiniCPM5-1B 模型说明](https://huggingface.co/openbmb/MiniCPM5-1B)
+
+```bash
+BASE="$HOME/minimind-runs"
+mkdir -p "$BASE"
+hf download openbmb/MiniCPM5-1B \
+  --revision ac83f813ba7da263c51a9f3ec37c2072597e54af \
+  --include '*.json' '*.jinja' '*.safetensors' \
+  --local-dir "$BASE/teacher-1b-base"
+
+cd "$BASE/expanded/source"
+python experiments/distill_1b.py \
+  --run-dir ../records \
+  --teacher-dir "$BASE/teacher-1b-base" \
+  --output "$BASE/1b" 2>&1 | tee "$BASE/1b.log"
+```
 
 ## 三轮实验放在一起怎么讲
 
