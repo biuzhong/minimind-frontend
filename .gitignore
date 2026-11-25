@@ -4,3 +4,11 @@ __pycache__/
 out
 website/
 docs-minimind/
+# Generated experiment artifacts
+/runs/
+/.assets/
+/.venv/
+/checkpoints/
+*.pth
+*.safetensors
+.env

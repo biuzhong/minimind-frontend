@@ -1,0 +1,30 @@
+[
+  {
+    "stage": "rl",
+    "parameters": 13522368,
+    "basic": {
+      "total": 256,
+      "json": 253,
+      "passed": 198
+    },
+    "policy": {
+      "total": 66,
+      "json": 66,
+      "passed": 29
+    }
+  },
+  {
+    "stage": "teacher",
+    "parameters": 63912192,
+    "basic": {
+      "total": 256,
+      "json": 256,
+      "passed": 256
+    },
+    "policy": {
+      "total": 66,
+      "json": 66,
+      "passed": 66
+    }
+  }
+]

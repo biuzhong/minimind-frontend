@@ -1,0 +1,2 @@
+# Preserve recorded terminal evidence without imposing authoring whitespace rules.
+experiments/recorded/** -whitespace

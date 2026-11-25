@@ -1,0 +1,18 @@
+$ /root/miniconda3/bin/python -u train_full_sft.py --device cuda:0 --epochs 12 --batch_size 16 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-chain/records/sft.jsonl --save_weight chain_sft --hidden_size 256 --num_hidden_layers 4 --learning_rate 0.0005 --from_weight chain_pre
+Model Params: 4.98M
+Trainable Params: 4.983M
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 256 examples [00:00, 29570.70 examples/s]
+Epoch:[1/12](16/16), loss: 4.2949, logits_loss: 4.2949, aux_loss: 0.0000, lr: 0.00049233, epoch_time: 0.0min
+Epoch:[2/12](16/16), loss: 1.3330, logits_loss: 1.3330, aux_loss: 0.0000, lr: 0.00046986, epoch_time: 0.0min
+Epoch:[3/12](16/16), loss: 0.5030, logits_loss: 0.5030, aux_loss: 0.0000, lr: 0.00043410, epoch_time: 0.0min
+Epoch:[4/12](16/16), loss: 0.1445, logits_loss: 0.1445, aux_loss: 0.0000, lr: 0.00038750, epoch_time: 0.0min
+Epoch:[5/12](16/16), loss: 0.0600, logits_loss: 0.0600, aux_loss: 0.0000, lr: 0.00033323, epoch_time: 0.0min
+Epoch:[6/12](16/16), loss: 0.0625, logits_loss: 0.0625, aux_loss: 0.0000, lr: 0.00027500, epoch_time: 0.0min
+Epoch:[7/12](16/16), loss: 0.0413, logits_loss: 0.0413, aux_loss: 0.0000, lr: 0.00021677, epoch_time: 0.0min
+Epoch:[8/12](16/16), loss: 0.0354, logits_loss: 0.0354, aux_loss: 0.0000, lr: 0.00016250, epoch_time: 0.0min
+Epoch:[9/12](16/16), loss: 0.0419, logits_loss: 0.0419, aux_loss: 0.0000, lr: 0.00011590, epoch_time: 0.0min
+Epoch:[10/12](16/16), loss: 0.0454, logits_loss: 0.0454, aux_loss: 0.0000, lr: 0.00008014, epoch_time: 0.0min
+Epoch:[11/12](16/16), loss: 0.0355, logits_loss: 0.0355, aux_loss: 0.0000, lr: 0.00005767, epoch_time: 0.0min
+Epoch:[12/12](16/16), loss: 0.0343, logits_loss: 0.0343, aux_loss: 0.0000, lr: 0.00005000, epoch_time: 0.0min

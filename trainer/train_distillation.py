@@ -1,3 +1,5 @@
+# Modified by minimind-frontend. Add the CE-only control and calculate distribution losses in FP32.
+
 import os
 import sys
 
@@ -6,6 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import datasets  # noqa: F401  # Windows pyarrow/torch DLL conflict workaround (issue #771)
 import argparse
+import math
 import time
 import warnings
 import torch
@@ -26,9 +29,9 @@ def distillation_loss(student_logits, teacher_logits, temperature=1.0, reduction
     if student_logits.size(0) == 0 and reduction == 'batchmean':
         return student_logits.sum() * 0.0
     with torch.no_grad():
-        teacher_probs = F.softmax(teacher_logits / temperature, dim=-1).detach()
+        teacher_probs = F.softmax(teacher_logits.float() / temperature, dim=-1).detach()
 
-    student_log_probs = F.log_softmax(student_logits / temperature, dim=-1)
+    student_log_probs = F.log_softmax(student_logits.float() / temperature, dim=-1)
 
     kl = F.kl_div(
         student_log_probs,
@@ -62,15 +65,15 @@ def train_epoch(epoch, loader, iters, teacher_model, lm_config_student, start_st
         if teacher_model is not None:
             with torch.no_grad():
                 teacher_logits = teacher_model(input_ids).logits[..., :-1, :].contiguous()
-                vocab_size_student = student_logits.size(-1)
-                teacher_logits = teacher_logits[..., :vocab_size_student]
+                if teacher_logits.size(-1) != student_logits.size(-1):
+                    raise ValueError('Teacher and student must share the same vocabulary.')
 
         # ========== 计算损失 ==========
         # 1) Ground-Truth CE Loss
         shift_labels = labels[..., 1:].contiguous()
         loss_mask_flat = loss_mask.view(-1)
         ce_loss = F.cross_entropy(
-            student_logits.view(-1, student_logits.size(-1)),
+            student_logits.view(-1, student_logits.size(-1)).float(),
             shift_labels.view(-1),
             ignore_index=-100,
             reduction='none'
@@ -169,6 +172,12 @@ if __name__ == "__main__":
     parser.add_argument("--wandb_project", type=str, default="MiniMind-Distillation", help="wandb项目名")
     parser.add_argument("--use_compile", default=0, type=int, choices=[0, 1], help="是否使用torch.compile加速（0=否，1=是）")
     args = parser.parse_args()
+    if not 0.0 <= args.alpha <= 1.0:
+        parser.error('--alpha must be between 0 and 1')
+    if not math.isfinite(args.temperature) or args.temperature <= 0:
+        parser.error('--temperature must be finite and positive')
+    if args.alpha < 1.0 and args.from_teacher_weight == 'none':
+        parser.error('distillation requires a trained teacher checkpoint')
 
     # ========== 1. 初始化环境和随机种子 ==========
     local_rank = init_distributed_mode()
@@ -199,10 +208,14 @@ if __name__ == "__main__":
     # ========== 5. 定义学生和教师模型 ==========
     model, tokenizer = init_model(lm_config_student, args.from_student_weight, device=args.device)
     Logger(f'学生模型总参数量：{sum(p.numel() for p in model.parameters()) / 1e6:.3f} M')
-    teacher_model, _ = init_model(lm_config_teacher, args.from_teacher_weight, device=args.device)
-    teacher_model.eval()
-    teacher_model.requires_grad_(False)
-    Logger(f'教师模型总参数量：{sum(p.numel() for p in teacher_model.parameters()) / 1e6:.3f} M')
+    teacher_model = None
+    if args.alpha < 1.0:
+        teacher_model, _ = init_model(lm_config_teacher, args.from_teacher_weight, device=args.device)
+        teacher_model.eval()
+        teacher_model.requires_grad_(False)
+        Logger(f'教师模型总参数量：{sum(p.numel() for p in teacher_model.parameters()) / 1e6:.3f} M')
+    else:
+        Logger('CE-only control: teacher model is not loaded.')
     train_ds = SFTDataset(args.data_path, tokenizer, max_length=args.max_seq_len)
     train_sampler = DistributedSampler(train_ds) if dist.is_initialized() else None
     scaler = torch.cuda.amp.GradScaler(enabled=(args.dtype == 'float16'))

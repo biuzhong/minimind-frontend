@@ -1,0 +1,33 @@
+{"prompt": "前端请求收到 HTTP 401。只输出一行 JSON，包含 code（数字）和 action（字符串）。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "联调导出任务时，面板提示数据读取成功，页面可以继续渲染。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"prompt": "导出任务收到 HTTP 200，现场描述是「数据读取成功，页面可以继续渲染」。按接口契约给出结果。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"prompt": "联调收藏页面时，面板提示数据读取成功，页面可以继续渲染。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"prompt": "收藏页面收到 HTTP 200，现场描述是「数据读取成功，页面可以继续渲染」。按接口契约给出结果。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"prompt": "联调导出任务时，面板提示接口已经正常返回用户信息。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"prompt": "导出任务收到 HTTP 200，现场描述是「接口已经正常返回用户信息」。按接口契约给出结果。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"prompt": "联调收藏页面时，面板提示接口已经正常返回用户信息。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"prompt": "收藏页面收到 HTTP 200，现场描述是「接口已经正常返回用户信息」。按接口契约给出结果。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"prompt": "联调导出任务时，面板提示请求未通过认证，登录令牌过期。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "导出任务收到 HTTP 401，现场描述是「请求未通过认证，登录令牌过期」。按接口契约给出结果。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "联调收藏页面时，面板提示请求未通过认证，登录令牌过期。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "收藏页面收到 HTTP 401，现场描述是「请求未通过认证，登录令牌过期」。按接口契约给出结果。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "联调导出任务时，面板提示当前会话未登录，需要重新认证。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "导出任务收到 HTTP 401，现场描述是「当前会话未登录，需要重新认证」。按接口契约给出结果。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "联调收藏页面时，面板提示当前会话未登录，需要重新认证。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "收藏页面收到 HTTP 401，现场描述是「当前会话未登录，需要重新认证」。按接口契约给出结果。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"prompt": "联调导出任务时，面板提示请求的页面路径找不到。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":404,\"action\":\"not_found\"}"}
+{"prompt": "导出任务收到 HTTP 404，现场描述是「请求的页面路径找不到」。按接口契约给出结果。", "answer": "{\"code\":404,\"action\":\"not_found\"}"}
+{"prompt": "联调收藏页面时，面板提示请求的页面路径找不到。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":404,\"action\":\"not_found\"}"}
+{"prompt": "收藏页面收到 HTTP 404，现场描述是「请求的页面路径找不到」。按接口契约给出结果。", "answer": "{\"code\":404,\"action\":\"not_found\"}"}
+{"prompt": "联调导出任务时，面板提示指定资源已不存在。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":404,\"action\":\"not_found\"}"}
+{"prompt": "导出任务收到 HTTP 404，现场描述是「指定资源已不存在」。按接口契约给出结果。", "answer": "{\"code\":404,\"action\":\"not_found\"}"}
+{"prompt": "联调收藏页面时，面板提示指定资源已不存在。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":404,\"action\":\"not_found\"}"}
+{"prompt": "收藏页面收到 HTTP 404，现场描述是「指定资源已不存在」。按接口契约给出结果。", "answer": "{\"code\":404,\"action\":\"not_found\"}"}
+{"prompt": "联调导出任务时，面板提示服务维护中，现在暂时不可用。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"prompt": "导出任务收到 HTTP 503，现场描述是「服务维护中，现在暂时不可用」。按接口契约给出结果。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"prompt": "联调收藏页面时，面板提示服务维护中，现在暂时不可用。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"prompt": "收藏页面收到 HTTP 503，现场描述是「服务维护中，现在暂时不可用」。按接口契约给出结果。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"prompt": "联调导出任务时，面板提示服务器过载，服务暂时无法访问。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"prompt": "导出任务收到 HTTP 503，现场描述是「服务器过载，服务暂时无法访问」。按接口契约给出结果。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"prompt": "联调收藏页面时，面板提示服务器过载，服务暂时无法访问。只输出一行 JSON，含 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"prompt": "收藏页面收到 HTTP 503，现场描述是「服务器过载，服务暂时无法访问」。按接口契约给出结果。", "answer": "{\"code\":503,\"action\":\"retry\"}"}

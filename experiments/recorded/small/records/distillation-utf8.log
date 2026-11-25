@@ -1,0 +1,11 @@
+$ /root/miniconda3/bin/python -u train_distillation.py --device cuda:0 --epochs 1 --batch_size 8 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-chain/records/teacher_sft.jsonl --save_weight chain_kd_utf8_check --learning_rate 7e-05 --teacher_use_moe 0 --teacher_hidden_size 384 --teacher_num_layers 6 --from_student_weight chain_rl --from_teacher_weight chain_teacher_sft --alpha 0.5 --temperature 2 --student_hidden_size 256 --student_num_layers 4
+Model Params: 4.98M
+Trainable Params: 4.983M
+学生模型总参数量：4.983 M
+Model Params: 13.52M
+Trainable Params: 13.522M
+教师模型总参数量：13.522 M
+Epoch:[1/1](20/60), loss: 0.0941, ce: 0.0319, aux_loss: 0.0000, distill: 0.1564, learning_rate: 0.00005425, epoch_time: 0.000min
+Epoch:[1/1](40/60), loss: 0.0829, ce: 0.0427, aux_loss: 0.0000, distill: 0.1231, learning_rate: 0.00002275, epoch_time: 0.000min
+Epoch:[1/1](60/60), loss: 0.0647, ce: 0.0179, aux_loss: 0.0000, distill: 0.1115, learning_rate: 0.00000700, epoch_time: 0.000min
+Rerun parameter tensors match original checkpoint: yes

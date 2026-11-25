@@ -1,0 +1,26 @@
+{
+  "temperature": 2.0,
+  "questions": 322,
+  "reference_tokens": {
+    "all": 5330,
+    "basic": 4224,
+    "policy": 1106
+  },
+  "mean_scaled_kl": {
+    "rl": {
+      "all": 6.188901,
+      "basic": 6.011771,
+      "policy": 6.865388
+    },
+    "ce_control": {
+      "all": 4.4389,
+      "basic": 4.330624,
+      "policy": 4.852422
+    },
+    "distillation": {
+      "all": 1.986911,
+      "basic": 1.878702,
+      "policy": 2.400181
+    }
+  }
+}

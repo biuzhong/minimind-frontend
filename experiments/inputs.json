@@ -1,0 +1,42 @@
+{
+  "pretrain_768.pth": {
+    "sha256": "0191958e7a96ef7cd1e443d379dc2ebea90cfea72cc4450fbcb4a7b87ff945f6",
+    "urls": [
+      "https://www.modelscope.cn/models/gongjy/minimind-3-pytorch/resolve/master/pretrain_768.pth",
+      "https://huggingface.co/jingyaogong/minimind-3-pytorch/resolve/edba70e/pretrain_768.pth",
+      "https://hf-mirror.com/jingyaogong/minimind-3-pytorch/resolve/edba70e/pretrain_768.pth"
+    ]
+  },
+  "full_sft_768.pth": {
+    "sha256": "5b8c49f6c9d965092e651cafeeaeb8705558632b3fd4ac8ab319cbc5a3cbc4a0",
+    "urls": [
+      "https://www.modelscope.cn/models/gongjy/minimind-3-pytorch/resolve/master/full_sft_768.pth",
+      "https://huggingface.co/jingyaogong/minimind-3-pytorch/resolve/edba70e/full_sft_768.pth",
+      "https://hf-mirror.com/jingyaogong/minimind-3-pytorch/resolve/edba70e/full_sft_768.pth"
+    ]
+  },
+  "grpo_768.pth": {
+    "sha256": "4e9733d76593d0810569b30e8b8d9389f84b225f62a4e277bae984719e338abb",
+    "urls": [
+      "https://www.modelscope.cn/models/gongjy/minimind-3-pytorch/resolve/master/grpo_768.pth",
+      "https://huggingface.co/jingyaogong/minimind-3-pytorch/resolve/edba70e/grpo_768.pth",
+      "https://hf-mirror.com/jingyaogong/minimind-3-pytorch/resolve/edba70e/grpo_768.pth"
+    ]
+  },
+  "grpo_768_moe.pth": {
+    "sha256": "eb4da3387c3cbde36f43517975ba59df0989aee18cac6158a2dc260e20f2e738",
+    "urls": [
+      "https://www.modelscope.cn/models/gongjy/minimind-3-pytorch/resolve/master/grpo_768_moe.pth",
+      "https://huggingface.co/jingyaogong/minimind-3-pytorch/resolve/edba70e/grpo_768_moe.pth",
+      "https://hf-mirror.com/jingyaogong/minimind-3-pytorch/resolve/edba70e/grpo_768_moe.pth"
+    ]
+  },
+  "sharing_kd_512.jsonl": {
+    "sha256": "f25ce0b108a2d342297bce18038827e5595398f13319a5eb523029b10b47d9a5",
+    "urls": [
+      "https://huggingface.co/datasets/jingyaogong/minimind_dataset/resolve/312afb4/sft_t2t_mini.jsonl",
+      "https://hf-mirror.com/datasets/jingyaogong/minimind_dataset/resolve/312afb4/sft_t2t_mini.jsonl"
+    ],
+    "lines": 512
+  }
+}

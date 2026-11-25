@@ -1,3 +1,5 @@
+# Modified by minimind-frontend. Add rule-based rewards and rollout temperature options for the HTTP experiments.
+
 import os
 import sys
 
@@ -24,6 +26,7 @@ from model.model_minimind import MiniMindConfig, MiniMindForCausalLM
 from dataset.lm_dataset import RLAIFDataset
 from trainer.trainer_utils import Logger, is_main_process, lm_checkpoint, init_distributed_mode, setup_seed, SkipBatchSampler, init_model, LMForRewardModel, rep_penalty, resolve_dtype
 from trainer.rollout_engine import create_rollout_engine
+from trainer.http_demo_reward import score_answer
 
 warnings.filterwarnings('ignore')
 
@@ -76,7 +79,7 @@ def grpo_train_epoch(epoch, loader, iters, rollout_engine, ref_model, reward_mod
             attention_mask=prompt_inputs["attention_mask"],
             num_generations=args.num_generations,
             max_new_tokens=args.max_gen_len,
-            temperature=0.8,
+            temperature=args.rollout_temperature,
         )
         outputs = rollout_result.output_ids
         completion_ids = rollout_result.completion_ids
@@ -87,7 +90,13 @@ def grpo_train_epoch(epoch, loader, iters, rollout_engine, ref_model, reward_mod
         logp_pos = prompt_lens.unsqueeze(1) - 1 + torch.arange(completion_ids.size(1), device=args.device).unsqueeze(0)
         full_mask.scatter_(1, logp_pos + 1, rollout_result.completion_mask.to(args.device, dtype=full_mask.dtype))
 
-        rewards = calculate_rewards(prompts, completions, reward_model).to(args.device)  # [B*num_gen]
+        if args.http_demo_rewards:
+            rewards = torch.tensor([
+                score_answer(completion, batch['answer'][index // args.num_generations])
+                for index, completion in enumerate(completions)
+            ], dtype=torch.float32, device=args.device)
+        else:
+            rewards = calculate_rewards(prompts, completions, reward_model).to(args.device)
 
         with autocast_ctx:
             res = model(outputs, attention_mask=full_mask)
@@ -210,12 +219,14 @@ if __name__ == "__main__":
     parser.add_argument('--max_seq_len', default=768, type=int, help="Prompt最大长度")
     parser.add_argument("--max_gen_len", type=int, default=1024, help="生成的最大长度")
     parser.add_argument("--data_path", type=str, default="../dataset/rlaif.jsonl", help="RLAIF数据路径")
+    parser.add_argument("--rollout_temperature", type=float, default=0.8, help="Sampling temperature for GRPO rollouts")
     parser.add_argument("--num_generations", type=int, default=6, help="每个prompt生成的样本数")
     parser.add_argument("--beta", type=float, default=0.1, help="KL惩罚系数")
     parser.add_argument("--loss_type", type=str, default="cispo", choices=["grpo", "cispo"], help="loss类型")
     parser.add_argument("--epsilon", type=float, default=0.2, help="GRPO的PPO clip epsilon")
     parser.add_argument("--epsilon_high", type=float, default=5.0, help="epsilon上界")
     parser.add_argument('--from_weight', default='full_sft', type=str, help="基于哪个权重训练")
+    parser.add_argument("--http_demo_rewards", action="store_true", help="Use the HTTP teaching dataset and its rule-based reward")
     parser.add_argument("--reward_model_path", type=str, default="../../internlm2-1_8b-reward", help="Reward模型路径")
     parser.add_argument('--from_resume', default=0, type=int, choices=[0, 1], help="是否自动检测&续训（0=否，1=是）")
     parser.add_argument("--use_wandb", action="store_true", help="是否使用wandb")
@@ -264,7 +275,9 @@ if __name__ == "__main__":
     ref_model, _ = init_model(lm_config, base_weight, device=args.device)
     ref_model = ref_model.eval().requires_grad_(False)
     # Reward模型
-    reward_model = LMForRewardModel(args.reward_model_path, device=args.device, dtype=torch.float16)
+    reward_model = None
+    if not args.http_demo_rewards:
+        reward_model = LMForRewardModel(args.reward_model_path, device=args.device, dtype=torch.float16)
     # Rollout引擎（可插拔替换，只负责 policy 推理）
     rollout_engine = create_rollout_engine(
         engine_type=args.rollout_engine,

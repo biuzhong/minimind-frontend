@@ -1,0 +1,627 @@
+2026-11-25T00:05:06+08:00
+Wed Nov 25 00:05:06 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4080 ...    On  |   00000000:B2:00.0 Off |                  N/A |
+| 30%   29C    P8             10W /  320W |       1MiB /  32760MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]
+PyTorch 2.8.0+cu128 CUDA 12.8 BF16 True
+Cloning into 'minimind'...
+STAGE random
+STAGE pretrain
+$ /root/miniconda3/bin/python -u train_pretrain.py --device cuda:0 --epochs 3 --batch_size 16 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-chain/records/pretrain.jsonl --save_weight chain_pre --hidden_size 256 --num_hidden_layers 4 --learning_rate 0.0008 --from_weight chain_random
+Model Params: 4.98M
+Trainable Params: 4.983M
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 1200 examples [00:00, 163022.76 examples/s]
+Epoch:[1/3](20/75), loss: 2.1909, logits_loss: 2.1909, aux_loss: 0.0000, lr: 0.00078605, epoch_time: 0.0min
+Epoch:[1/3](40/75), loss: 0.5552, logits_loss: 0.5552, aux_loss: 0.0000, lr: 0.00074530, epoch_time: 0.0min
+Epoch:[1/3](60/75), loss: 0.3184, logits_loss: 0.3184, aux_loss: 0.0000, lr: 0.00068089, epoch_time: 0.0min
+Epoch:[1/3](75/75), loss: 0.2776, logits_loss: 0.2776, aux_loss: 0.0000, lr: 0.00062000, epoch_time: 0.0min
+Epoch:[2/3](20/75), loss: 0.2618, logits_loss: 0.2618, aux_loss: 0.0000, lr: 0.00052709, epoch_time: 0.0min
+Epoch:[2/3](40/75), loss: 0.2373, logits_loss: 0.2373, aux_loss: 0.0000, lr: 0.00042744, epoch_time: 0.0min
+Epoch:[2/3](60/75), loss: 0.2350, logits_loss: 0.2350, aux_loss: 0.0000, lr: 0.00032875, epoch_time: 0.0min
+Epoch:[2/3](75/75), loss: 0.2196, logits_loss: 0.2196, aux_loss: 0.0000, lr: 0.00026000, epoch_time: 0.0min
+Epoch:[3/3](20/75), loss: 0.2281, logits_loss: 0.2281, aux_loss: 0.0000, lr: 0.00018104, epoch_time: 0.0min
+Epoch:[3/3](40/75), loss: 0.2279, logits_loss: 0.2279, aux_loss: 0.0000, lr: 0.00012214, epoch_time: 0.0min
+Epoch:[3/3](60/75), loss: 0.2118, logits_loss: 0.2118, aux_loss: 0.0000, lr: 0.00008787, epoch_time: 0.0min
+Epoch:[3/3](75/75), loss: 0.2180, logits_loss: 0.2180, aux_loss: 0.0000, lr: 0.00008000, epoch_time: 0.0min
+STAGE sft
+$ /root/miniconda3/bin/python -u train_full_sft.py --device cuda:0 --epochs 12 --batch_size 16 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-chain/records/sft.jsonl --save_weight chain_sft --hidden_size 256 --num_hidden_layers 4 --learning_rate 0.0005 --from_weight chain_pre
+Model Params: 4.98M
+Trainable Params: 4.983M
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 256 examples [00:00, 29570.70 examples/s]
+Epoch:[1/12](16/16), loss: 4.2949, logits_loss: 4.2949, aux_loss: 0.0000, lr: 0.00049233, epoch_time: 0.0min
+Epoch:[2/12](16/16), loss: 1.3330, logits_loss: 1.3330, aux_loss: 0.0000, lr: 0.00046986, epoch_time: 0.0min
+Epoch:[3/12](16/16), loss: 0.5030, logits_loss: 0.5030, aux_loss: 0.0000, lr: 0.00043410, epoch_time: 0.0min
+Epoch:[4/12](16/16), loss: 0.1445, logits_loss: 0.1445, aux_loss: 0.0000, lr: 0.00038750, epoch_time: 0.0min
+Epoch:[5/12](16/16), loss: 0.0600, logits_loss: 0.0600, aux_loss: 0.0000, lr: 0.00033323, epoch_time: 0.0min
+Epoch:[6/12](16/16), loss: 0.0625, logits_loss: 0.0625, aux_loss: 0.0000, lr: 0.00027500, epoch_time: 0.0min
+Epoch:[7/12](16/16), loss: 0.0413, logits_loss: 0.0413, aux_loss: 0.0000, lr: 0.00021677, epoch_time: 0.0min
+Epoch:[8/12](16/16), loss: 0.0354, logits_loss: 0.0354, aux_loss: 0.0000, lr: 0.00016250, epoch_time: 0.0min
+Epoch:[9/12](16/16), loss: 0.0419, logits_loss: 0.0419, aux_loss: 0.0000, lr: 0.00011590, epoch_time: 0.0min
+Epoch:[10/12](16/16), loss: 0.0454, logits_loss: 0.0454, aux_loss: 0.0000, lr: 0.00008014, epoch_time: 0.0min
+Epoch:[11/12](16/16), loss: 0.0355, logits_loss: 0.0355, aux_loss: 0.0000, lr: 0.00005767, epoch_time: 0.0min
+Epoch:[12/12](16/16), loss: 0.0343, logits_loss: 0.0343, aux_loss: 0.0000, lr: 0.00005000, epoch_time: 0.0min
+STAGE rl
+$ /root/miniconda3/bin/python -u train_grpo.py --device cuda:0 --epochs 3 --batch_size 4 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 4 --data_path /root/autodl-tmp/minimind-chain/records/rl.jsonl --save_weight chain_rl --hidden_size 256 --num_hidden_layers 4 --learning_rate 7e-05 --max_gen_len 30 --num_generations 6 --thinking_ratio 0 --beta 0.02 --loss_type grpo --http_demo_rewards --debug_mode --debug_interval 20 --from_weight chain_sft
+Model Params: 4.98M
+Trainable Params: 4.983M
+Model Params: 4.98M
+Trainable Params: 4.983M
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 80 examples [00:00, 13175.13 examples/s]
+Epoch:[1/3](4/20), Reward: 2.8000, KL_ref: -0.0004, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 17.00, Learning Rate: 0.00006931
+Epoch:[1/3](8/20), Reward: 2.4458, KL_ref: -0.0370, Adv Std: 0.5107, Adv Mean: -0.0000, Actor Loss: 0.0008, Avg Response Len: 16.67, Learning Rate: 0.00006728
+Epoch:[1/3](12/20), Reward: 2.8000, KL_ref: 0.0031, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 17.25, Learning Rate: 0.00006398
+Epoch:[1/3](16/20), Reward: 2.8000, KL_ref: 0.0016, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 16.00, Learning Rate: 0.00005958
+[DEBUG] step=20, sample[0]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[0] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查订单接口时看到「服务器短时过载」。请给出 JSON。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[0] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=20, sample[1]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[1] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查图片服务时看到「服务暂时中断」。请给出 JSON。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[1] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=20, sample[2]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[2] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+Network 里订单接口显示 令牌已过期。判断该怎么处理。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[2] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=20, sample[3]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[3] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+Network 里订单接口显示 接口暂时不可用。判断该怎么处理。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[3] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+Epoch:[1/3](20/20), Reward: 2.8000, KL_ref: 0.0017, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 16.75, Learning Rate: 0.00005425
+Epoch:[2/3](4/20), Reward: 2.8000, KL_ref: 0.0015, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 16.00, Learning Rate: 0.00004823
+Epoch:[2/3](8/20), Reward: 2.8000, KL_ref: 0.0029, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 16.00, Learning Rate: 0.00004179
+Epoch:[2/3](12/20), Reward: 2.8000, KL_ref: 0.0038, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 16.50, Learning Rate: 0.00003521
+Epoch:[2/3](16/20), Reward: 2.8000, KL_ref: 0.0036, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 16.25, Learning Rate: 0.00002877
+[DEBUG] step=20, sample[0]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[0] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查图片服务时看到「资源响应正常」。请给出 JSON。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[0] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=1.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=1.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=1.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=1.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=1.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=1.1000
+====================================================================================================
+[DEBUG] step=20, sample[1]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[1] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+Network 里图片服务显示 请求已经完成。判断该怎么处理。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[1] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=20, sample[2]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[2] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查图片服务时看到「路由不存在」。请给出 JSON。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[2] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=20, sample[3]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[3] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查图片服务时看到「服务正在维护」。请给出 JSON。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[3] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+Epoch:[2/3](20/20), Reward: 2.3750, KL_ref: -0.0294, Adv Std: 0.0005, Adv Mean: -0.0003, Actor Loss: 0.0007, Avg Response Len: 16.50, Learning Rate: 0.00002275
+Epoch:[3/3](4/20), Reward: 2.8000, KL_ref: 0.0015, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 17.50, Learning Rate: 0.00001742
+Epoch:[3/3](8/20), Reward: 2.8000, KL_ref: 0.0015, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 16.75, Learning Rate: 0.00001302
+Epoch:[3/3](12/20), Reward: 2.6583, KL_ref: -0.0066, Adv Std: 0.5107, Adv Mean: -0.0000, Actor Loss: 0.0002, Avg Response Len: 17.08, Learning Rate: 0.00000972
+Epoch:[3/3](16/20), Reward: 2.8000, KL_ref: 0.0009, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 15.75, Learning Rate: 0.00000769
+[DEBUG] step=20, sample[0]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[0] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+Network 里图片服务显示 服务找不到资源。判断该怎么处理。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[0] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":404,"action":"not_found"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=20, sample[1]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[1] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+Network 里订单接口显示 接口返回成功。判断该怎么处理。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[1] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":200,"action":"ok"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=20, sample[2]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[2] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查订单接口时看到「用户未认证」。请给出 JSON。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[2] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=20, sample[3]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[3] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+Network 里图片服务显示 接口暂时不可用。判断该怎么处理。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[3] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+Epoch:[3/3](20/20), Reward: 2.8000, KL_ref: 0.0009, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 16.25, Learning Rate: 0.00000700
+STAGE teacher_pretrain
+$ /root/miniconda3/bin/python -u train_pretrain.py --device cuda:0 --epochs 3 --batch_size 16 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-chain/records/pretrain.jsonl --save_weight chain_teacher_pre --hidden_size 384 --num_hidden_layers 6 --learning_rate 0.0007
+Model Params: 13.52M
+Trainable Params: 13.522M
+Epoch:[1/3](20/75), loss: 1.0352, logits_loss: 1.0352, aux_loss: 0.0000, lr: 0.00068780, epoch_time: 0.0min
+Epoch:[1/3](40/75), loss: 0.3381, logits_loss: 0.3381, aux_loss: 0.0000, lr: 0.00065214, epoch_time: 0.0min
+Epoch:[1/3](60/75), loss: 0.2858, logits_loss: 0.2858, aux_loss: 0.0000, lr: 0.00059578, epoch_time: 0.0min
+Epoch:[1/3](75/75), loss: 0.2676, logits_loss: 0.2676, aux_loss: 0.0000, lr: 0.00054250, epoch_time: 0.0min
+Epoch:[2/3](20/75), loss: 0.2507, logits_loss: 0.2507, aux_loss: 0.0000, lr: 0.00046121, epoch_time: 0.0min
+Epoch:[2/3](40/75), loss: 0.2273, logits_loss: 0.2273, aux_loss: 0.0000, lr: 0.00037401, epoch_time: 0.0min
+Epoch:[2/3](60/75), loss: 0.2247, logits_loss: 0.2247, aux_loss: 0.0000, lr: 0.00028766, epoch_time: 0.0min
+Epoch:[2/3](75/75), loss: 0.2115, logits_loss: 0.2115, aux_loss: 0.0000, lr: 0.00022750, epoch_time: 0.0min
+Epoch:[3/3](20/75), loss: 0.2182, logits_loss: 0.2182, aux_loss: 0.0000, lr: 0.00015841, epoch_time: 0.0min
+Epoch:[3/3](40/75), loss: 0.2215, logits_loss: 0.2215, aux_loss: 0.0000, lr: 0.00010687, epoch_time: 0.0min
+Epoch:[3/3](60/75), loss: 0.2054, logits_loss: 0.2054, aux_loss: 0.0000, lr: 0.00007688, epoch_time: 0.0min
+Epoch:[3/3](75/75), loss: 0.2124, logits_loss: 0.2124, aux_loss: 0.0000, lr: 0.00007000, epoch_time: 0.0min
+STAGE teacher_sft
+$ /root/miniconda3/bin/python -u train_full_sft.py --device cuda:0 --epochs 10 --batch_size 16 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-chain/records/teacher_sft.jsonl --save_weight chain_teacher_sft --hidden_size 384 --num_hidden_layers 6 --learning_rate 0.0004 --from_weight chain_teacher_pre
+Model Params: 13.52M
+Trainable Params: 13.522M
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 480 examples [00:00, 41353.75 examples/s]
+Epoch:[1/10](20/30), loss: 2.3741, logits_loss: 2.3741, aux_loss: 0.0000, lr: 0.00039607, epoch_time: 0.0min
+Epoch:[1/10](30/30), loss: 0.6913, logits_loss: 0.6913, aux_loss: 0.0000, lr: 0.00039119, epoch_time: 0.0min
+Epoch:[2/10](20/30), loss: 0.1391, logits_loss: 0.1391, aux_loss: 0.0000, lr: 0.00037588, epoch_time: 0.0min
+Epoch:[2/10](30/30), loss: 0.0969, logits_loss: 0.0969, aux_loss: 0.0000, lr: 0.00036562, epoch_time: 0.0min
+Epoch:[3/10](20/30), loss: 0.0247, logits_loss: 0.0247, aux_loss: 0.0000, lr: 0.00034044, epoch_time: 0.0min
+Epoch:[3/10](30/30), loss: 0.0383, logits_loss: 0.0383, aux_loss: 0.0000, lr: 0.00032580, epoch_time: 0.0min
+Epoch:[4/10](20/30), loss: 0.0356, logits_loss: 0.0356, aux_loss: 0.0000, lr: 0.00029321, epoch_time: 0.0min
+Epoch:[4/10](30/30), loss: 0.0284, logits_loss: 0.0284, aux_loss: 0.0000, lr: 0.00027562, epoch_time: 0.0min
+Epoch:[5/10](20/30), loss: 0.0259, logits_loss: 0.0259, aux_loss: 0.0000, lr: 0.00023882, epoch_time: 0.0min
+Epoch:[5/10](30/30), loss: 0.0220, logits_loss: 0.0220, aux_loss: 0.0000, lr: 0.00022000, epoch_time: 0.0min
+Epoch:[6/10](20/30), loss: 0.0380, logits_loss: 0.0380, aux_loss: 0.0000, lr: 0.00018258, epoch_time: 0.0min
+Epoch:[6/10](30/30), loss: 0.0303, logits_loss: 0.0303, aux_loss: 0.0000, lr: 0.00016438, epoch_time: 0.0min
+Epoch:[7/10](20/30), loss: 0.0347, logits_loss: 0.0347, aux_loss: 0.0000, lr: 0.00013000, epoch_time: 0.0min
+Epoch:[7/10](30/30), loss: 0.0260, logits_loss: 0.0260, aux_loss: 0.0000, lr: 0.00011420, epoch_time: 0.0min
+Epoch:[8/10](20/30), loss: 0.0264, logits_loss: 0.0264, aux_loss: 0.0000, lr: 0.00008623, epoch_time: 0.0min
+Epoch:[8/10](30/30), loss: 0.0326, logits_loss: 0.0326, aux_loss: 0.0000, lr: 0.00007438, epoch_time: 0.0min
+Epoch:[9/10](20/30), loss: 0.0245, logits_loss: 0.0245, aux_loss: 0.0000, lr: 0.00005556, epoch_time: 0.0min
+Epoch:[9/10](30/30), loss: 0.0451, logits_loss: 0.0451, aux_loss: 0.0000, lr: 0.00004881, epoch_time: 0.0min
+Epoch:[10/10](20/30), loss: 0.0288, logits_loss: 0.0288, aux_loss: 0.0000, lr: 0.00004099, epoch_time: 0.0min
+Epoch:[10/10](30/30), loss: 0.0403, logits_loss: 0.0403, aux_loss: 0.0000, lr: 0.00004000, epoch_time: 0.0min
+STAGE ce_control
+$ /root/miniconda3/bin/python -u train_distillation.py --device cuda:0 --epochs 1 --batch_size 8 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-chain/records/teacher_sft.jsonl --save_weight chain_ce --learning_rate 7e-05 --teacher_use_moe 0 --teacher_hidden_size 384 --teacher_num_layers 6 --from_student_weight chain_rl --from_teacher_weight chain_teacher_sft --alpha 1 --temperature 2 --student_hidden_size 256 --student_num_layers 4
+Model Params: 4.98M
+Trainable Params: 4.983M
+学生模型总参数量：4.983 M
+CE-only control: teacher model is not loaded.
+Epoch:[1/1](20/60), loss: 0.0309, ce: 0.0309, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00005425, epoch_time: 0.000min
+Epoch:[1/1](40/60), loss: 0.0421, ce: 0.0421, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00002275, epoch_time: 0.000min
+Epoch:[1/1](60/60), loss: 0.0170, ce: 0.0170, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000700, epoch_time: 0.000min
+STAGE distillation
+$ /root/miniconda3/bin/python -u train_distillation.py --device cuda:0 --epochs 1 --batch_size 8 --num_workers 0 --accumulation_steps 1 --max_seq_len 112 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-chain/records/teacher_sft.jsonl --save_weight chain_kd --learning_rate 7e-05 --teacher_use_moe 0 --teacher_hidden_size 384 --teacher_num_layers 6 --from_student_weight chain_rl --from_teacher_weight chain_teacher_sft --alpha 0.5 --temperature 2 --student_hidden_size 256 --student_num_layers 4
+Model Params: 4.98M
+Trainable Params: 4.983M
+学生模型总参数量：4.983 M
+Model Params: 13.52M
+Trainable Params: 13.522M
+?????????13.522 M
+Epoch:[1/1](20/60), loss: 0.0941, ce: 0.0319, aux_loss: 0.0000, distill: 0.1564, learning_rate: 0.00005425, epoch_time: 0.000min
+Epoch:[1/1](40/60), loss: 0.0829, ce: 0.0427, aux_loss: 0.0000, distill: 0.1231, learning_rate: 0.00002275, epoch_time: 0.000min
+Epoch:[1/1](60/60), loss: 0.0647, ce: 0.0179, aux_loss: 0.0000, distill: 0.1115, learning_rate: 0.00000700, epoch_time: 0.000min
+STAGE evaluation
+random: 0/33 full contract, JSON 0/33, reward 0.000
+pretrain: 0/33 full contract, JSON 0/33, reward 0.000
+sft: 28/33 full contract, JSON 33/33, reward 2.542
+rl: 29/33 full contract, JSON 33/33, reward 2.594
+teacher_sft: 26/33 full contract, JSON 33/33, reward 2.439
+ce_control: 28/33 full contract, JSON 33/33, reward 2.542
+distillation: 28/33 full contract, JSON 33/33, reward 2.542
+/root/autodl-tmp/minimind-chain/records/results.json

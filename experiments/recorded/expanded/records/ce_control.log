@@ -1,0 +1,15 @@
+$ /root/miniconda3/bin/python -u train_distillation.py --device cuda:0 --epochs 1 --batch_size 16 --num_workers 0 --accumulation_steps 1 --max_seq_len 128 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-expanded/records/teacher_sft.jsonl --save_weight expand_ce --learning_rate 5e-05 --teacher_use_moe 0 --teacher_hidden_size 768 --teacher_num_layers 8 --from_student_weight expand_rl --from_teacher_weight expand_teacher --alpha 1.0 --temperature 2 --student_hidden_size 384 --student_num_layers 6
+Model Params: 13.52M
+Trainable Params: 13.522M
+学生模型总参数量：13.522 M
+CE-only control: teacher model is not loaded.
+Epoch:[1/1](20/200), loss: 0.0652, ce: 0.0652, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00004890, epoch_time: 0.000min
+Epoch:[1/1](40/200), loss: 0.0375, ce: 0.0375, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00004570, epoch_time: 0.000min
+Epoch:[1/1](60/200), loss: 0.0342, ce: 0.0342, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00004073, epoch_time: 0.000min
+Epoch:[1/1](80/200), loss: 0.0282, ce: 0.0282, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00003445, epoch_time: 0.000min
+Epoch:[1/1](100/200), loss: 0.0343, ce: 0.0343, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00002750, epoch_time: 0.000min
+Epoch:[1/1](120/200), loss: 0.0361, ce: 0.0361, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00002055, epoch_time: 0.000min
+Epoch:[1/1](140/200), loss: 0.0381, ce: 0.0381, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00001427, epoch_time: 0.000min
+Epoch:[1/1](160/200), loss: 0.0284, ce: 0.0284, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000930, epoch_time: 0.000min
+Epoch:[1/1](180/200), loss: 0.0236, ce: 0.0236, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000610, epoch_time: 0.000min
+Epoch:[1/1](200/200), loss: 0.0277, ce: 0.0277, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000500, epoch_time: 0.000min

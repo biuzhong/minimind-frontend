@@ -1,3 +1,5 @@
+# Modified by minimind-frontend. Expose the optional reference answer for the rule-based GRPO experiment.
+
 from torch.utils.data import Dataset
 import torch
 import json
@@ -224,7 +226,7 @@ class RLAIFDataset(Dataset):
 
         return {
             'prompt': prompt,
-            'answer': ""
+            'answer': sample.get('answer') or ""
         }
 
 class AgentRLDataset(Dataset):

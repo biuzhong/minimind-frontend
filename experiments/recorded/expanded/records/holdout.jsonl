@@ -1,0 +1,322 @@
+{"kind": "policy", "prompt": "登录请求收到 HTTP 401。refresh_token=present。请只返回一行 JSON，包含 code 和 action。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "创建订单收到 HTTP 503，method=POST。请只返回一行 JSON，包含 code 和 action。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 200，同时报告操作成功。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「操作成功」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 200，同时报告数据已收到。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「数据已收到」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 200，同时报告操作成功。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「操作成功」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 200，同时报告数据已收到。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「数据已收到」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 200，同时报告操作成功。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「操作成功」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 200，同时报告数据已收到。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「数据已收到」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 200，同时报告操作成功。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「操作成功」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 200，同时报告数据已收到。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「数据已收到」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 200，同时报告操作成功。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「操作成功」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 200，同时报告数据已收到。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「数据已收到」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 200，同时报告操作成功。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「操作成功」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 200，同时报告数据已收到。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「数据已收到」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 200，同时报告操作成功。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「操作成功」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 200，同时报告数据已收到。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「数据已收到」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 200，同时报告操作成功。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「操作成功」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 200，同时报告数据已收到。请填 code 和 action。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「数据已收到」，返回码是 200。请提供一行 JSON。", "answer": "{\"code\":200,\"action\":\"ok\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「请求参数不合法」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 400，同时报告输入格式不正确。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「输入格式不正确」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「请求参数不合法」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 400，同时报告输入格式不正确。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「输入格式不正确」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「请求参数不合法」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 400，同时报告输入格式不正确。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「输入格式不正确」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「请求参数不合法」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 400，同时报告输入格式不正确。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「输入格式不正确」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「请求参数不合法」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 400，同时报告输入格式不正确。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「输入格式不正确」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「请求参数不合法」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 400，同时报告输入格式不正确。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「输入格式不正确」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「请求参数不合法」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 400，同时报告输入格式不正确。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「输入格式不正确」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 400，同时报告请求参数不合法。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「请求参数不合法」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 400，同时报告输入格式不正确。请填 code 和 action。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「输入格式不正确」，返回码是 400。请提供一行 JSON。", "answer": "{\"code\":400,\"action\":\"fix\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 401，同时报告凭证缺失。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「凭证缺失」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 401，同时报告会话已失效。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「会话已失效」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 401，同时报告凭证缺失。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「凭证缺失」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 401，同时报告会话已失效。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「会话已失效」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 401，同时报告凭证缺失。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「凭证缺失」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 401，同时报告会话已失效。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「会话已失效」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 401，同时报告凭证缺失。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「凭证缺失」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 401，同时报告会话已失效。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「会话已失效」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 401，同时报告凭证缺失。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「凭证缺失」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 401，同时报告会话已失效。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「会话已失效」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 401，同时报告凭证缺失。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「凭证缺失」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 401，同时报告会话已失效。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「会话已失效」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 401，同时报告凭证缺失。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「凭证缺失」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 401，同时报告会话已失效。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「会话已失效」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 401，同时报告凭证缺失。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「凭证缺失」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 401，同时报告会话已失效。请填 code 和 action。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「会话已失效」，返回码是 401。请提供一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「权限不足」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 403，同时报告资源禁止访问。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「资源禁止访问」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「权限不足」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 403，同时报告资源禁止访问。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「资源禁止访问」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「权限不足」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 403，同时报告资源禁止访问。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「资源禁止访问」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「权限不足」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 403，同时报告资源禁止访问。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「资源禁止访问」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「权限不足」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 403，同时报告资源禁止访问。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「资源禁止访问」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「权限不足」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 403，同时报告资源禁止访问。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「资源禁止访问」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「权限不足」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 403，同时报告资源禁止访问。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「资源禁止访问」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 403，同时报告权限不足。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「权限不足」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 403，同时报告资源禁止访问。请填 code 和 action。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「资源禁止访问」，返回码是 403。请提供一行 JSON。", "answer": "{\"code\":403,\"action\":\"deny\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 404，同时报告资源未找到。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「资源未找到」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 404，同时报告接口地址没有对应资源。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「接口地址没有对应资源」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 404，同时报告资源未找到。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「资源未找到」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 404，同时报告接口地址没有对应资源。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「接口地址没有对应资源」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 404，同时报告资源未找到。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「资源未找到」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 404，同时报告接口地址没有对应资源。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「接口地址没有对应资源」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 404，同时报告资源未找到。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「资源未找到」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 404，同时报告接口地址没有对应资源。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「接口地址没有对应资源」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 404，同时报告资源未找到。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「资源未找到」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 404，同时报告接口地址没有对应资源。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「接口地址没有对应资源」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 404，同时报告资源未找到。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「资源未找到」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 404，同时报告接口地址没有对应资源。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「接口地址没有对应资源」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 404，同时报告资源未找到。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「资源未找到」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 404，同时报告接口地址没有对应资源。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「接口地址没有对应资源」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 404，同时报告资源未找到。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「资源未找到」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 404，同时报告接口地址没有对应资源。请填 code 和 action。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「接口地址没有对应资源」，返回码是 404。请提供一行 JSON。", "answer": "{\"code\":404,\"action\":\"missing\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「更新条件冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 409，同时报告提交发生并发冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「提交发生并发冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「更新条件冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 409，同时报告提交发生并发冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「提交发生并发冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「更新条件冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 409，同时报告提交发生并发冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「提交发生并发冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「更新条件冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 409，同时报告提交发生并发冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「提交发生并发冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「更新条件冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 409，同时报告提交发生并发冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「提交发生并发冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「更新条件冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 409，同时报告提交发生并发冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「提交发生并发冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「更新条件冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 409，同时报告提交发生并发冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「提交发生并发冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 409，同时报告更新条件冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「更新条件冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 409，同时报告提交发生并发冲突。请填 code 和 action。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「提交发生并发冲突」，返回码是 409。请提供一行 JSON。", "answer": "{\"code\":409,\"action\":\"conflict\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「短时间重复请求太多」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 429，同时报告接口限流生效。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「接口限流生效」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「短时间重复请求太多」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 429，同时报告接口限流生效。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「接口限流生效」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「短时间重复请求太多」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 429，同时报告接口限流生效。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「接口限流生效」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「短时间重复请求太多」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 429，同时报告接口限流生效。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「接口限流生效」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「短时间重复请求太多」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 429，同时报告接口限流生效。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「接口限流生效」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「短时间重复请求太多」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 429，同时报告接口限流生效。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「接口限流生效」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「短时间重复请求太多」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 429，同时报告接口限流生效。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「接口限流生效」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 429，同时报告短时间重复请求太多。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「短时间重复请求太多」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 429，同时报告接口限流生效。请填 code 和 action。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「接口限流生效」，返回码是 429。请提供一行 JSON。", "answer": "{\"code\":429,\"action\":\"wait\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 503，同时报告服务压力太大。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「服务压力太大」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在收藏页面排错，面板显示 HTTP 503，同时报告后端正在维护。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核收藏接口的日志时看到「后端正在维护」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 503，同时报告服务压力太大。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「服务压力太大」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在导出页面排错，面板显示 HTTP 503，同时报告后端正在维护。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核导出接口的日志时看到「后端正在维护」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 503，同时报告服务压力太大。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「服务压力太大」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在质检页面排错，面板显示 HTTP 503，同时报告后端正在维护。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核质检接口的日志时看到「后端正在维护」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 503，同时报告服务压力太大。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「服务压力太大」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在统计页面排错，面板显示 HTTP 503，同时报告后端正在维护。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核统计接口的日志时看到「后端正在维护」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 503，同时报告服务压力太大。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「服务压力太大」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在标签页面排错，面板显示 HTTP 503，同时报告后端正在维护。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核标签接口的日志时看到「后端正在维护」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 503，同时报告服务压力太大。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「服务压力太大」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在地址页面排错，面板显示 HTTP 503，同时报告后端正在维护。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核地址接口的日志时看到「后端正在维护」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 503，同时报告服务压力太大。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「服务压力太大」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在对账页面排错，面板显示 HTTP 503，同时报告后端正在维护。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核对账接口的日志时看到「后端正在维护」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 503，同时报告服务压力太大。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「服务压力太大」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "今天在投票页面排错，面板显示 HTTP 503，同时报告后端正在维护。请填 code 和 action。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "basic", "prompt": "审核投票接口的日志时看到「后端正在维护」，返回码是 503。请提供一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上收藏接口报错 HTTP 401。请求元数据为 refresh_token=present。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "收藏联调记录 HTTP 401，条件为 refresh_token=present。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "线上导出接口报错 HTTP 401。请求元数据为 refresh_token=present。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "导出联调记录 HTTP 401，条件为 refresh_token=present。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "线上质检接口报错 HTTP 401。请求元数据为 refresh_token=present。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "质检联调记录 HTTP 401，条件为 refresh_token=present。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "线上统计接口报错 HTTP 401。请求元数据为 refresh_token=present。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "统计联调记录 HTTP 401，条件为 refresh_token=present。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "线上标签接口报错 HTTP 401。请求元数据为 refresh_token=present。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "标签联调记录 HTTP 401，条件为 refresh_token=present。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "线上地址接口报错 HTTP 401。请求元数据为 refresh_token=present。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "地址联调记录 HTTP 401，条件为 refresh_token=present。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "线上对账接口报错 HTTP 401。请求元数据为 refresh_token=present。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "对账联调记录 HTTP 401，条件为 refresh_token=present。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "线上投票接口报错 HTTP 401。请求元数据为 refresh_token=present。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "投票联调记录 HTTP 401，条件为 refresh_token=present。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"refresh\"}"}
+{"kind": "policy", "prompt": "线上收藏接口报错 HTTP 401。请求元数据为 refresh_token=absent。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "收藏联调记录 HTTP 401，条件为 refresh_token=absent。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "线上导出接口报错 HTTP 401。请求元数据为 refresh_token=absent。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "导出联调记录 HTTP 401，条件为 refresh_token=absent。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "线上质检接口报错 HTTP 401。请求元数据为 refresh_token=absent。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "质检联调记录 HTTP 401，条件为 refresh_token=absent。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "线上统计接口报错 HTTP 401。请求元数据为 refresh_token=absent。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "统计联调记录 HTTP 401，条件为 refresh_token=absent。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "线上标签接口报错 HTTP 401。请求元数据为 refresh_token=absent。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "标签联调记录 HTTP 401，条件为 refresh_token=absent。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "线上地址接口报错 HTTP 401。请求元数据为 refresh_token=absent。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "地址联调记录 HTTP 401，条件为 refresh_token=absent。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "线上对账接口报错 HTTP 401。请求元数据为 refresh_token=absent。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "对账联调记录 HTTP 401，条件为 refresh_token=absent。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "线上投票接口报错 HTTP 401。请求元数据为 refresh_token=absent。请给出一行 JSON。", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "投票联调记录 HTTP 401，条件为 refresh_token=absent。这个场景该执行什么动作？", "answer": "{\"code\":401,\"action\":\"login\"}"}
+{"kind": "policy", "prompt": "线上收藏接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "收藏联调记录 HTTP 503，条件为 method=GET。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上导出接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "导出联调记录 HTTP 503，条件为 method=GET。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上质检接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "质检联调记录 HTTP 503，条件为 method=GET。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上统计接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "统计联调记录 HTTP 503，条件为 method=GET。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上标签接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "标签联调记录 HTTP 503，条件为 method=GET。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上地址接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "地址联调记录 HTTP 503，条件为 method=GET。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上对账接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "对账联调记录 HTTP 503，条件为 method=GET。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上投票接口报错 HTTP 503。请求元数据为 method=GET。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "投票联调记录 HTTP 503，条件为 method=GET。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"retry\"}"}
+{"kind": "policy", "prompt": "线上收藏接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "收藏联调记录 HTTP 503，条件为 method=POST。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "线上导出接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "导出联调记录 HTTP 503，条件为 method=POST。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "线上质检接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "质检联调记录 HTTP 503，条件为 method=POST。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "线上统计接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "统计联调记录 HTTP 503，条件为 method=POST。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "线上标签接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "标签联调记录 HTTP 503，条件为 method=POST。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "线上地址接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "地址联调记录 HTTP 503，条件为 method=POST。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "线上对账接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "对账联调记录 HTTP 503，条件为 method=POST。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "线上投票接口报错 HTTP 503。请求元数据为 method=POST。请给出一行 JSON。", "answer": "{\"code\":503,\"action\":\"stop\"}"}
+{"kind": "policy", "prompt": "投票联调记录 HTTP 503，条件为 method=POST。这个场景该执行什么动作？", "answer": "{\"code\":503,\"action\":\"stop\"}"}

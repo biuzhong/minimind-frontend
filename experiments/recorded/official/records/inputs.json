@@ -1,0 +1,27 @@
+[
+  {
+    "name": "minimind/out/pretrain_768.pth",
+    "bytes": 137684407,
+    "sha256": "0191958e7a96ef7cd1e443d379dc2ebea90cfea72cc4450fbcb4a7b87ff945f6"
+  },
+  {
+    "name": "minimind/out/full_sft_768.pth",
+    "bytes": 137683346,
+    "sha256": "5b8c49f6c9d965092e651cafeeaeb8705558632b3fd4ac8ab319cbc5a3cbc4a0"
+  },
+  {
+    "name": "minimind/out/grpo_768.pth",
+    "bytes": 137684019,
+    "sha256": "4e9733d76593d0810569b30e8b8d9389f84b225f62a4e277bae984719e338abb"
+  },
+  {
+    "name": "minimind/out/grpo_768_moe.pth",
+    "bytes": 406719902,
+    "sha256": "eb4da3387c3cbde36f43517975ba59df0989aee18cac6158a2dc260e20f2e738"
+  },
+  {
+    "name": "minimind/dataset/sharing_kd_512.jsonl",
+    "bytes": 1544909,
+    "sha256": "f25ce0b108a2d342297bce18038827e5595398f13319a5eb523029b10b47d9a5"
+  }
+]

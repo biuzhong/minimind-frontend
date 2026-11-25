@@ -1,0 +1,30 @@
+$ /root/miniconda3/bin/python -u train_full_sft.py --device cuda:0 --epochs 6 --batch_size 32 --num_workers 0 --accumulation_steps 1 --max_seq_len 128 --save_interval 1000 --log_interval 20 --data_path /root/autodl-tmp/minimind-expanded/records/sft.jsonl --save_weight expand_sft --hidden_size 384 --num_hidden_layers 6 --learning_rate 0.0003 --from_weight expand_pre
+Model Params: 13.52M
+Trainable Params: 13.522M
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 1952 examples [00:00, 122256.62 examples/s]
+Epoch:[1/6](20/61), loss: 3.2580, logits_loss: 3.2580, aux_loss: 0.0000, lr: 0.00029802, epoch_time: 0.0min
+Epoch:[1/6](40/61), loss: 0.7320, logits_loss: 0.7320, aux_loss: 0.0000, lr: 0.00029212, epoch_time: 0.0min
+Epoch:[1/6](60/61), loss: 0.1739, logits_loss: 0.1739, aux_loss: 0.0000, lr: 0.00028249, epoch_time: 0.0min
+Epoch:[1/6](61/61), loss: 0.1339, logits_loss: 0.1339, aux_loss: 0.0000, lr: 0.00028191, epoch_time: 0.0min
+Epoch:[2/6](20/61), loss: 0.0473, logits_loss: 0.0473, aux_loss: 0.0000, lr: 0.00026866, epoch_time: 0.0min
+Epoch:[2/6](40/61), loss: 0.0373, logits_loss: 0.0373, aux_loss: 0.0000, lr: 0.00025237, epoch_time: 0.0min
+Epoch:[2/6](60/61), loss: 0.0399, logits_loss: 0.0399, aux_loss: 0.0000, lr: 0.00023350, epoch_time: 0.0min
+Epoch:[2/6](61/61), loss: 0.0295, logits_loss: 0.0295, aux_loss: 0.0000, lr: 0.00023250, epoch_time: 0.0min
+Epoch:[3/6](20/61), loss: 0.0450, logits_loss: 0.0450, aux_loss: 0.0000, lr: 0.00021154, epoch_time: 0.0min
+Epoch:[3/6](40/61), loss: 0.0358, logits_loss: 0.0358, aux_loss: 0.0000, lr: 0.00018920, epoch_time: 0.0min
+Epoch:[3/6](60/61), loss: 0.0324, logits_loss: 0.0324, aux_loss: 0.0000, lr: 0.00016616, epoch_time: 0.0min
+Epoch:[3/6](61/61), loss: 0.0299, logits_loss: 0.0299, aux_loss: 0.0000, lr: 0.00016500, epoch_time: 0.0min
+Epoch:[4/6](20/61), loss: 0.0351, logits_loss: 0.0351, aux_loss: 0.0000, lr: 0.00014194, epoch_time: 0.0min
+Epoch:[4/6](40/61), loss: 0.0385, logits_loss: 0.0385, aux_loss: 0.0000, lr: 0.00011955, epoch_time: 0.0min
+Epoch:[4/6](60/61), loss: 0.0409, logits_loss: 0.0409, aux_loss: 0.0000, lr: 0.00009851, epoch_time: 0.0min
+Epoch:[4/6](61/61), loss: 0.0375, logits_loss: 0.0375, aux_loss: 0.0000, lr: 0.00009750, epoch_time: 0.0min
+Epoch:[5/6](20/61), loss: 0.0293, logits_loss: 0.0293, aux_loss: 0.0000, lr: 0.00007852, epoch_time: 0.0min
+Epoch:[5/6](40/61), loss: 0.0247, logits_loss: 0.0247, aux_loss: 0.0000, lr: 0.00006208, epoch_time: 0.0min
+Epoch:[5/6](60/61), loss: 0.0335, logits_loss: 0.0335, aux_loss: 0.0000, lr: 0.00004867, epoch_time: 0.0min
+Epoch:[5/6](61/61), loss: 0.0244, logits_loss: 0.0244, aux_loss: 0.0000, lr: 0.00004809, epoch_time: 0.0min
+Epoch:[6/6](20/61), loss: 0.0291, logits_loss: 0.0291, aux_loss: 0.0000, lr: 0.00003827, epoch_time: 0.0min
+Epoch:[6/6](40/61), loss: 0.0218, logits_loss: 0.0218, aux_loss: 0.0000, lr: 0.00003219, epoch_time: 0.0min
+Epoch:[6/6](60/61), loss: 0.0290, logits_loss: 0.0290, aux_loss: 0.0000, lr: 0.00003000, epoch_time: 0.0min
+Epoch:[6/6](61/61), loss: 0.0269, logits_loss: 0.0269, aux_loss: 0.0000, lr: 0.00003000, epoch_time: 0.0min

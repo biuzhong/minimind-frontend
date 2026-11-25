@@ -1,0 +1,58 @@
+[
+  {
+    "stage": "random",
+    "continuation_ce": 8.7783,
+    "token_count": 1360,
+    "total": 128,
+    "examples": [
+      {
+        "prefix": "联调手册：收藏接口提示操作成功，HTTP 状态码是 ",
+        "target": "200，前端动作是 ok。",
+        "generated": "新鲜新鲜新鲜新鲜新鲜新鲜新鲜新鲜新鲜新鲜新鲜新鲜导导导导导导导导导导"
+      },
+      {
+        "prefix": "故障排查：收藏检测到操作成功，状态码记为 ",
+        "target": "200，处理方式标记为 ok。",
+        "generated": "````````````````icallyicallyicallyicallyicallyically"
+      },
+      {
+        "prefix": "联调手册：收藏接口提示数据已收到，HTTP 状态码是 ",
+        "target": "200，前端动作是 ok。",
+        "generated": "ackackackackackackackackackackackackackackackackackackack原因原因原因"
+      },
+      {
+        "prefix": "故障排查：收藏检测到数据已收到，状态码记为 ",
+        "target": "200，处理方式标记为 ok。",
+        "generated": "``````````icallyicallyicallyicallyicallyicallyicallyically资金资金资金资金"
+      }
+    ]
+  },
+  {
+    "stage": "pretrain",
+    "continuation_ce": 2.51632,
+    "token_count": 1360,
+    "total": 128,
+    "examples": [
+      {
+        "prefix": "联调手册：收藏接口提示操作成功，HTTP 状态码是 ",
+        "target": "200，前端动作是 ok。",
+        "generated": "状态码是 200，前端动作是 ok。"
+      },
+      {
+        "prefix": "故障排查：收藏检测到操作成功，状态码记为 ",
+        "target": "200，处理方式标记为 ok。",
+        "generated": " 200，处理方式标记为 ok。"
+      },
+      {
+        "prefix": "联调手册：收藏接口提示数据已收到，HTTP 状态码是 ",
+        "target": "200，前端动作是 ok。",
+        "generated": "状态码是 200，前端动作是 ok。"
+      },
+      {
+        "prefix": "故障排查：收藏检测到数据已收到，状态码记为 ",
+        "target": "200，处理方式标记为 ok。",
+        "generated": " 200，处理方式标记为 ok。"
+      }
+    ]
+  }
+]

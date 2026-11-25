@@ -1,0 +1,37 @@
+[
+  {
+    "stage": "random",
+    "mean_reference_ce": 8.852498,
+    "tokens": 536
+  },
+  {
+    "stage": "pretrain",
+    "mean_reference_ce": 13.632839,
+    "tokens": 536
+  },
+  {
+    "stage": "sft",
+    "mean_reference_ce": 0.076981,
+    "tokens": 536
+  },
+  {
+    "stage": "rl",
+    "mean_reference_ce": 0.057524,
+    "tokens": 536
+  },
+  {
+    "stage": "teacher_sft",
+    "mean_reference_ce": 0.071219,
+    "tokens": 536
+  },
+  {
+    "stage": "ce_control",
+    "mean_reference_ce": 0.072433,
+    "tokens": 536
+  },
+  {
+    "stage": "distillation",
+    "mean_reference_ce": 0.062574,
+    "tokens": 536
+  }
+]

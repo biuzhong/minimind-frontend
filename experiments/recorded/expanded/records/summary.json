@@ -1,0 +1,100 @@
+[
+  {
+    "stage": "random",
+    "parameters": 13522368,
+    "basic": {
+      "total": 256,
+      "json": 0,
+      "passed": 0
+    },
+    "policy": {
+      "total": 66,
+      "json": 0,
+      "passed": 0
+    }
+  },
+  {
+    "stage": "pretrain",
+    "parameters": 13522368,
+    "basic": {
+      "total": 256,
+      "json": 0,
+      "passed": 0
+    },
+    "policy": {
+      "total": 66,
+      "json": 0,
+      "passed": 0
+    }
+  },
+  {
+    "stage": "sft",
+    "parameters": 13522368,
+    "basic": {
+      "total": 256,
+      "json": 241,
+      "passed": 205
+    },
+    "policy": {
+      "total": 66,
+      "json": 66,
+      "passed": 33
+    }
+  },
+  {
+    "stage": "rl",
+    "parameters": 13522368,
+    "basic": {
+      "total": 256,
+      "json": 253,
+      "passed": 198
+    },
+    "policy": {
+      "total": 66,
+      "json": 66,
+      "passed": 29
+    }
+  },
+  {
+    "stage": "teacher",
+    "parameters": 63912192,
+    "basic": {
+      "total": 256,
+      "json": 256,
+      "passed": 256
+    },
+    "policy": {
+      "total": 66,
+      "json": 66,
+      "passed": 66
+    }
+  },
+  {
+    "stage": "ce_control",
+    "parameters": 13522368,
+    "basic": {
+      "total": 256,
+      "json": 256,
+      "passed": 232
+    },
+    "policy": {
+      "total": 66,
+      "json": 66,
+      "passed": 45
+    }
+  },
+  {
+    "stage": "distillation",
+    "parameters": 13522368,
+    "basic": {
+      "total": 256,
+      "json": 256,
+      "passed": 230
+    },
+    "policy": {
+      "total": 66,
+      "json": 66,
+      "passed": 40
+    }
+  }
+]

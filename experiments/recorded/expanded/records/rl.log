@@ -1,0 +1,959 @@
+$ /root/miniconda3/bin/python -u train_grpo.py --device cuda:0 --epochs 3 --batch_size 8 --num_workers 0 --accumulation_steps 1 --max_seq_len 128 --save_interval 1000 --log_interval 8 --data_path /root/autodl-tmp/minimind-expanded/records/rl.jsonl --save_weight expand_rl --hidden_size 384 --num_hidden_layers 6 --learning_rate 7e-05 --max_gen_len 30 --num_generations 6 --thinking_ratio 0 --beta 0.02 --loss_type grpo --http_demo_rewards --rollout_temperature 1.05 --debug_mode --debug_interval 40 --from_weight expand_sft
+Model Params: 13.52M
+Trainable Params: 13.522M
+Model Params: 13.52M
+Trainable Params: 13.522M
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 320 examples [00:00, 47786.42 examples/s]
+Epoch:[1/3](8/40), Reward: 2.4500, KL_ref: -0.0284, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0002, Avg Response Len: 16.62, Learning Rate: 0.00006931
+Epoch:[1/3](16/40), Reward: 2.5375, KL_ref: -0.0255, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0002, Avg Response Len: 16.75, Learning Rate: 0.00006728
+Epoch:[1/3](24/40), Reward: 2.2604, KL_ref: -0.0362, Adv Std: 0.3572, Adv Mean: -0.0000, Actor Loss: 0.0003, Avg Response Len: 16.46, Learning Rate: 0.00006398
+Epoch:[1/3](32/40), Reward: 2.3625, KL_ref: -0.0117, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0000, Avg Response Len: 17.12, Learning Rate: 0.00005958
+[DEBUG] step=40, sample[0]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[0] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+请只返回 JSON。Network 中偏好接口响应 HTTP 401，refresh_token=present。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[0] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"refresh"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"refresh"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"refresh"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"refresh"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"refresh"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"refresh"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[1]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[1] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+偏好接口收到 HTTP 401，属性 refresh_token=absent。按自动处理规则给出结果。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[1] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[2]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[2] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+联调评论时收到 401。此次请求的附加信息为 refresh_token=absent。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[2] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[3]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[3] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+账单接口收到 HTTP 503，属性 method=POST。按自动处理规则给出结果。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[3] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+[DEBUG] step=40, sample[4]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[4] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+联调订单时收到 401。此次请求的附加信息为 refresh_token=absent。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[4] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[5]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[5] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+消息接口收到 HTTP 503，属性 method=GET。按自动处理规则给出结果。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[5] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[6]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[6] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+消息接口收到 HTTP 401，属性 refresh_token=absent。按自动处理规则给出结果。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[6] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[7]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[7] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+请只返回 JSON。Network 中报表接口响应 HTTP 503，method=GET。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[7] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+Epoch:[1/3](40/40), Reward: 2.7125, KL_ref: -0.0274, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 16.62, Learning Rate: 0.00005425
+Epoch:[2/3](8/40), Reward: 2.5375, KL_ref: -0.0192, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 17.50, Learning Rate: 0.00004823
+Epoch:[2/3](16/40), Reward: 2.6250, KL_ref: -0.0191, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 17.25, Learning Rate: 0.00004179
+Epoch:[2/3](24/40), Reward: 2.5375, KL_ref: -0.0197, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 17.12, Learning Rate: 0.00003521
+Epoch:[2/3](32/40), Reward: 2.3625, KL_ref: -0.0189, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 16.88, Learning Rate: 0.00002877
+[DEBUG] step=40, sample[0]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[0] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查通知工单：HTTP 401；refresh_token=present。给出建议动作。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[0] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+[DEBUG] step=40, sample[1]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[1] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+联调发票时收到 503。此次请求的附加信息为 method=GET。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[1] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[2]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[2] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+联调积分时收到 401。此次请求的附加信息为 refresh_token=absent。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[2] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[3]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[3] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+图片接口收到 HTTP 503，属性 method=POST。按自动处理规则给出结果。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[3] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+[DEBUG] step=40, sample[4]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[4] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查消息工单：HTTP 401；refresh_token=absent。给出建议动作。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[4] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[5]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[5] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+联调店铺时收到 503。此次请求的附加信息为 method=GET。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[5] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[6]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[6] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查报表工单：HTTP 503；method=POST。给出建议动作。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[6] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+[DEBUG] step=40, sample[7]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[7] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+结算接口收到 HTTP 503，属性 method=POST。按自动处理规则给出结果。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[7] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+Epoch:[2/3](40/40), Reward: 2.4500, KL_ref: -0.0220, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 16.62, Learning Rate: 0.00002275
+Epoch:[3/3](8/40), Reward: 2.5375, KL_ref: -0.0175, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 16.88, Learning Rate: 0.00001742
+Epoch:[3/3](16/40), Reward: 2.7125, KL_ref: -0.0241, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0002, Avg Response Len: 16.88, Learning Rate: 0.00001302
+Epoch:[3/3](24/40), Reward: 2.6250, KL_ref: -0.0271, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0002, Avg Response Len: 16.75, Learning Rate: 0.00000972
+Epoch:[3/3](32/40), Reward: 2.4500, KL_ref: -0.0214, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 16.75, Learning Rate: 0.00000769
+[DEBUG] step=40, sample[0]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[0] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+请只返回 JSON。Network 中评论接口响应 HTTP 503，method=GET。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[0] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[1]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[1] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+请只返回 JSON。Network 中结算接口响应 HTTP 503，method=GET。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[1] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[2]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[2] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+订阅接口收到 HTTP 503，属性 method=GET。按自动处理规则给出结果。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[2] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[3]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[3] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+库存接口收到 HTTP 503，属性 method=GET。按自动处理规则给出结果。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[3] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.8000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.8000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.8000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.8000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.8000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.8000
+====================================================================================================
+[DEBUG] step=40, sample[4]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[4] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+联调店铺时收到 401。此次请求的附加信息为 refresh_token=present。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[4] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+[DEBUG] step=40, sample[5]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[5] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查偏好工单：HTTP 401；refresh_token=present。给出建议动作。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[5] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+[DEBUG] step=40, sample[6]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[6] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查报表工单：HTTP 503；method=POST。给出建议动作。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[6] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":503,"action":"retry"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+[DEBUG] step=40, sample[7]
+----------------------------------------------------------------------------------------------------
+============================== [DEBUG] sample[7] CONTEXT_BEGIN ==============================
+<|im_start|>system
+你是前端故障助手。只返回一行 JSON，包含数字 code 和字符串 action。<|im_end|>
+<|im_start|>user
+排查搜索工单：HTTP 401；refresh_token=present。给出建议动作。<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+=============================== [DEBUG] sample[7] CONTEXT_END ===============================
+============================ [DEBUG] gen[0] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[0] RESPONSE_END =============================
+[DEBUG] gen[0] reward=2.1000
+============================ [DEBUG] gen[1] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[1] RESPONSE_END =============================
+[DEBUG] gen[1] reward=2.1000
+============================ [DEBUG] gen[2] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[2] RESPONSE_END =============================
+[DEBUG] gen[2] reward=2.1000
+============================ [DEBUG] gen[3] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[3] RESPONSE_END =============================
+[DEBUG] gen[3] reward=2.1000
+============================ [DEBUG] gen[4] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[4] RESPONSE_END =============================
+[DEBUG] gen[4] reward=2.1000
+============================ [DEBUG] gen[5] RESPONSE_BEGIN ============================
+{"code":401,"action":"login"}
+============================= [DEBUG] gen[5] RESPONSE_END =============================
+[DEBUG] gen[5] reward=2.1000
+====================================================================================================
+Epoch:[3/3](40/40), Reward: 2.4500, KL_ref: -0.0264, Adv Std: 0.0000, Adv Mean: 0.0000, Actor Loss: 0.0001, Avg Response Len: 16.62, Learning Rate: 0.00000700

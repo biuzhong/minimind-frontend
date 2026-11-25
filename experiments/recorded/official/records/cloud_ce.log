@@ -1,0 +1,23 @@
+python -u train_distillation.py --device cuda:0 --dtype bfloat16 --epochs 1 --batch_size 2 --num_workers 0 --max_seq_len 512 --accumulation_steps 8 --save_interval 64 --log_interval 16 --teacher_use_moe 1 --from_student_weight grpo --from_teacher_weight grpo --data_path ../dataset/sharing_kd_512.jsonl --temperature 2 --alpha 1 --save_weight cloud_ce
+Model Params: 63.91M
+Trainable Params: 63.912M
+学生模型总参数量：63.912 M
+CE-only control: teacher model is not loaded.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 512 examples [00:00, 14879.70 examples/s]
+Epoch:[1/1](16/256), loss: 1.1901, ce: 1.1901, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000496, epoch_time: 0.000min
+Epoch:[1/1](32/256), loss: 1.1176, ce: 1.1176, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000483, epoch_time: 0.000min
+Epoch:[1/1](48/256), loss: 0.9684, ce: 0.9684, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000462, epoch_time: 0.000min
+Epoch:[1/1](64/256), loss: 0.8018, ce: 0.8018, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000434, epoch_time: 0.000min
+Epoch:[1/1](80/256), loss: 0.8522, ce: 0.8522, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000400, epoch_time: 0.000min
+Epoch:[1/1](96/256), loss: 1.1820, ce: 1.1820, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000361, epoch_time: 0.000min
+Epoch:[1/1](112/256), loss: 0.9848, ce: 0.9848, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000319, epoch_time: 0.000min
+Epoch:[1/1](128/256), loss: 0.8313, ce: 0.8313, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000275, epoch_time: 0.000min
+Epoch:[1/1](144/256), loss: 0.8658, ce: 0.8658, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000231, epoch_time: 0.000min
+Epoch:[1/1](160/256), loss: 0.9115, ce: 0.9115, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000189, epoch_time: 0.000min
+Epoch:[1/1](176/256), loss: 0.9302, ce: 0.9302, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000150, epoch_time: 0.000min
+Epoch:[1/1](192/256), loss: 0.7517, ce: 0.7517, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000116, epoch_time: 0.000min
+Epoch:[1/1](208/256), loss: 0.8225, ce: 0.8225, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000088, epoch_time: 0.000min
+Epoch:[1/1](224/256), loss: 1.0792, ce: 1.0792, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000067, epoch_time: 0.000min
+Epoch:[1/1](240/256), loss: 0.9198, ce: 0.9198, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000054, epoch_time: 0.000min
+Epoch:[1/1](256/256), loss: 0.8039, ce: 0.8039, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000050, epoch_time: 0.000min
+-rw-r--r-- 1 root root 132M Nov 24 00:42 ../out/cloud_ce_768.pth

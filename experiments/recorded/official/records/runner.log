@@ -1,0 +1,358 @@
+2026-11-23T16:23:50Z environment
+2026-11-23T16:23:50Z
+Tue Nov 24 00:23:50 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4080 ...    On  |   00000000:32:00.0 Off |                  N/A |
+| 30%   29C    P8             15W /  320W |       1MiB /  32760MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/md0         50G   39M   50G   1% /root/autodl-tmp
+/root/miniconda3/bin/python
+/root/miniconda3
+3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]
+PyTorch: 2.8.0+cu128 CUDA: 12.8
+GPU: NVIDIA GeForce RTX 4080 SUPER | BF16: True
+2026-11-23T16:23:57Z dependencies
+Looking in indexes: http://mirrors.aliyun.com/pypi/simple
+Collecting datasets==3.6.0
+  Downloading http://mirrors.aliyun.com/pypi/packages/20/34/a08b0ee99715eaba118cbe19a71f7b5e2425c2718ef96007c325944a1152/datasets-3.6.0-py3-none-any.whl (491 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 491.5/491.5 kB 588.6 kB/s eta 0:00:00
+Collecting transformers==4.57.6
+  Downloading http://mirrors.aliyun.com/pypi/packages/03/b8/e484ef633af3887baeeb4b6ad12743363af7cce68ae51e938e00aaa0529d/transformers-4.57.6-py3-none-any.whl (12.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 543.0 kB/s eta 0:00:00
+Collecting numpy==1.26.4
+  Downloading http://mirrors.aliyun.com/pypi/packages/0f/50/de23fde84e45f5c4fda2488c759b69990fd4512387a8632860f3ac9cd225/numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.0/18.0 MB 703.6 kB/s eta 0:00:00
+Collecting pyarrow<26,>=15
+  Downloading http://mirrors.aliyun.com/pypi/packages/60/c9/711ca85d79f1ec98f29a5eae2b051e25b4ecec5de3e3c0e2d5c5dcb15664/pyarrow-25.0.1-cp312-cp312-manylinux_2_28_x86_64.whl (50.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.1/50.1 MB 865.1 kB/s eta 0:00:00
+Collecting jinja2==3.1.2
+  Downloading http://mirrors.aliyun.com/pypi/packages/bc/c3/f068337a370801f372f2f8f6bad74a5c140f6fda3d9de154052708dd3c65/Jinja2-3.1.2-py3-none-any.whl (133 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 7.5 MB/s eta 0:00:00
+Requirement already satisfied: filelock in /root/miniconda3/lib/python3.12/site-packages (from datasets==3.6.0) (3.18.0)
+Collecting dill<0.3.9,>=0.3.0 (from datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/c9/7a/cef76fd8438a42f96db64ddaa85280485a9c395e7df3db8158cfec1eee34/dill-0.3.8-py3-none-any.whl (116 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 116.3/116.3 kB 7.7 MB/s eta 0:00:00
+Collecting pandas (from datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/0b/b6/f9c0c52f7a2fcd828e336dd143001b0bcbc1276c90187dfa104458528e2e/pandas-3.1.1-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 968.7 kB/s eta 0:00:00
+Collecting requests>=2.32.2 (from datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl (73 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 16.3 MB/s eta 0:00:00
+Collecting tqdm>=4.66.3 (from datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/a7/03/921a3d3c75785aca9ebfbfcabfbc3a1be12e2ab5265deb026d55a5a3f83e/tqdm-4.70.1-py3-none-any.whl (80 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.2/80.2 kB 2.3 MB/s eta 0:00:00
+Collecting xxhash (from datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/c8/6e/fafa2dad5450701c525c27c05f2d93228af263679959bf4ed552840f1d04/xxhash-4.1.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (472 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 472.2/472.2 kB 1.1 MB/s eta 0:00:00
+Collecting multiprocess<0.70.17 (from datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/0a/7d/a988f258104dcd2ccf1ed40fdc97e26c4ac351eeaf81d76e266c52d84e2f/multiprocess-0.70.16-py312-none-any.whl (146 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 146.7/146.7 kB 4.4 MB/s eta 0:00:00
+Collecting fsspec<=2025.3.0,>=2023.1.0 (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/56/53/eb690efa8513166adef3e0669afd31e95ffde69fb3c52ec2ac7223ed6018/fsspec-2025.3.0-py3-none-any.whl (193 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 193.6/193.6 kB 10.3 MB/s eta 0:00:00
+Collecting huggingface-hub>=0.24.0 (from datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/d4/55/ff47f1b082ecf5f43f4bc1e3b932d68eead171dabbbd1a92666c686301d7/huggingface_hub-2.4.0-py3-none-any.whl (857 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 857.0/857.0 kB 1.0 MB/s eta 0:00:00
+Requirement already satisfied: packaging in /root/miniconda3/lib/python3.12/site-packages (from datasets==3.6.0) (23.2)
+Requirement already satisfied: pyyaml>=5.1 in /root/miniconda3/lib/python3.12/site-packages (from datasets==3.6.0) (6.0.2)
+  Downloading http://mirrors.aliyun.com/pypi/packages/a8/af/48ac8483240de756d2438c380746e7130d1c6f75802ef22f3c6d49982787/huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 1.3 MB/s eta 0:00:00
+Collecting regex!=2019.12.17 (from transformers==4.57.6)
+  Downloading http://mirrors.aliyun.com/pypi/packages/5b/58/5557577840d70b06274882c880085eb83209e2009d89f8fe5c35b3c57acd/regex-2026.11.19-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (809 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 809.2/809.2 kB 1.2 MB/s eta 0:00:00
+Collecting tokenizers<=0.23.0,>=0.22.0 (from transformers==4.57.6)
+  Downloading http://mirrors.aliyun.com/pypi/packages/2e/76/932be4b50ef6ccedf9d3c6639b056a967a86258c6d9200643f01269211ca/tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 1.1 MB/s eta 0:00:00
+Collecting safetensors>=0.4.3 (from transformers==4.57.6)
+  Downloading http://mirrors.aliyun.com/pypi/packages/28/50/f203ff3a3ddfe19308efc83c5a3a29ed02bf786732ec35e68bf9162f3365/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 516.0/516.0 kB 1.2 MB/s eta 0:00:00
+Requirement already satisfied: MarkupSafe>=2.0 in /root/miniconda3/lib/python3.12/site-packages (from jinja2==3.1.2) (3.0.2)
+Collecting aiohttp!=4.0.0a0,!=4.0.0a1 (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/da/e4/aa172eb534b7f02f1f8ff1c3213347eaf3cf218db91a727c6863c22f1035/aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 1.0 MB/s eta 0:00:00
+Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface-hub>=0.24.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/f8/1e/1e8ecc05ef034e9a95c18ed32d2ec07905a7cd2ca611a9d88e25ee1f4850/hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 1.1 MB/s eta 0:00:00
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /root/miniconda3/lib/python3.12/site-packages (from huggingface-hub>=0.24.0->datasets==3.6.0) (4.14.1)
+Requirement already satisfied: charset_normalizer<4,>=2 in /root/miniconda3/lib/python3.12/site-packages (from requests>=2.32.2->datasets==3.6.0) (2.0.4)
+Requirement already satisfied: idna<4,>=2.5 in /root/miniconda3/lib/python3.12/site-packages (from requests>=2.32.2->datasets==3.6.0) (3.7)
+Requirement already satisfied: urllib3<3,>=1.26 in /root/miniconda3/lib/python3.12/site-packages (from requests>=2.32.2->datasets==3.6.0) (2.1.0)
+Requirement already satisfied: certifi>=2023.5.7 in /root/miniconda3/lib/python3.12/site-packages (from requests>=2.32.2->datasets==3.6.0) (2024.2.2)
+INFO: pip is looking at multiple versions of pandas to determine which version is compatible with other requirements. This could take a while.
+Collecting pandas (from datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/c5/a6/dc89cdd95e12093bc813e9b814a09f1a056be3e1304edaef9bf9dbee108a/pandas-3.1.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 1.2 MB/s eta 0:00:00
+  Downloading http://mirrors.aliyun.com/pypi/packages/cb/67/0c0f18e38d7f2d2af8c24b3315bc4046e73bbdd4a5540405506671ad0c0d/pandas-3.0.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (10.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.8/10.8 MB 1.2 MB/s eta 0:00:00
+Requirement already satisfied: python-dateutil>=2.8.2 in /root/miniconda3/lib/python3.12/site-packages (from pandas->datasets==3.6.0) (2.9.0.post0)
+Collecting aiohappyeyeballs>=2.5.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/71/43/1947f06babed6b3f1d7f38b0c767f52df66bfb2bc10b468c4a7de9eceff2/aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
+Collecting aiosignal>=1.4.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/fb/76/641ae371508676492379f16e2fa48f4e2c11741bd63c48be4b12a6b09cba/aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+Requirement already satisfied: attrs>=17.3.0 in /root/miniconda3/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0) (25.3.0)
+Collecting frozenlist>=1.1.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/6a/bd/d91c5e39f490a49df14320f4e8c80161cfcce09f1e2cde1edd16a551abb3/frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 242.4/242.4 kB 3.3 MB/s eta 0:00:00
+Collecting multidict<8.0,>=4.5 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/43/50/6bd8600b4843f0a9d939e0cc0f4160f4c727bd6c69e4f7e294a1caa93db8/multidict-7.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (516 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 516.8/516.8 kB 1.2 MB/s eta 0:00:00
+Collecting propcache>=0.2.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/85/9f/83a07b6ec0e043c050cfdd35fb0cf1b7897b91d554d6eea293740309afe7/propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (250 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 250.4/250.4 kB 6.1 MB/s eta 0:00:00
+Collecting yarl<2.0,>=1.25.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets==3.6.0)
+  Downloading http://mirrors.aliyun.com/pypi/packages/bc/7b/ca212cbe170ac8b96e45317ecbcf9c3c3ecf0cdec98d5b088a9c4088929b/yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (117 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.0/117.0 kB 8.4 MB/s eta 0:00:00
+Requirement already satisfied: six>=1.5 in /root/miniconda3/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas->datasets==3.6.0) (1.17.0)
+Installing collected packages: xxhash, tqdm, safetensors, requests, regex, pyarrow, propcache, numpy, multidict, jinja2, hf-xet, fsspec, frozenlist, dill, aiohappyeyeballs, yarl, pandas, multiprocess, huggingface-hub, aiosignal, tokenizers, aiohttp, transformers, datasets
+  Attempting uninstall: tqdm
+    Found existing installation: tqdm 4.66.2
+    Uninstalling tqdm-4.66.2:
+      Successfully uninstalled tqdm-4.66.2
+  Attempting uninstall: requests
+    Found existing installation: requests 2.31.0
+    Uninstalling requests-2.31.0:
+      Successfully uninstalled requests-2.31.0
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.3.2
+    Uninstalling numpy-2.3.2:
+      Successfully uninstalled numpy-2.3.2
+  Attempting uninstall: jinja2
+    Found existing installation: Jinja2 3.1.6
+    Uninstalling Jinja2-3.1.6:
+      Successfully uninstalled Jinja2-3.1.6
+  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2025.7.0
+    Uninstalling fsspec-2025.7.0:
+      Successfully uninstalled fsspec-2025.7.0
+Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 datasets-3.6.0 dill-0.3.8 frozenlist-1.8.0 fsspec-2025.3.0 hf-xet-1.8.0 huggingface-hub-0.36.2 jinja2-3.1.2 multidict-7.2.1 multiprocess-0.70.16 numpy-1.26.4 pandas-3.0.6 propcache-0.5.4 pyarrow-25.0.1 regex-2026.11.19 requests-2.34.2 safetensors-0.8.0 tokenizers-0.22.2 tqdm-4.70.1 transformers-4.57.6 xxhash-4.1.0 yarl-1.25.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+Dataset: 3.6.0 Transformers: 4.57.6
+2026-11-23T16:27:19Z checkout
+Cloning into 'minimind'...
+55c9ff613489348db450f2dea19963b1db1ab8f9
+2026-11-23T16:27:20Z download
+Fetched sharing_kd_512.jsonl from https://hf-mirror.com (1,544,909 B)
+Terminated
+2026-11-23T16:41:58Z ce_control
+python -u train_distillation.py --device cuda:0 --dtype bfloat16 --epochs 1 --batch_size 2 --num_workers 0 --max_seq_len 512 --accumulation_steps 8 --save_interval 64 --log_interval 16 --teacher_use_moe 1 --from_student_weight grpo --from_teacher_weight grpo --data_path ../dataset/sharing_kd_512.jsonl --temperature 2 --alpha 1 --save_weight cloud_ce
+Model Params: 63.91M
+Trainable Params: 63.912M
+学生模型总参数量：63.912 M
+CE-only control: teacher model is not loaded.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 512 examples [00:00, 14879.70 examples/s]
+Epoch:[1/1](16/256), loss: 1.1901, ce: 1.1901, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000496, epoch_time: 0.000min
+Epoch:[1/1](32/256), loss: 1.1176, ce: 1.1176, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000483, epoch_time: 0.000min
+Epoch:[1/1](48/256), loss: 0.9684, ce: 0.9684, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000462, epoch_time: 0.000min
+Epoch:[1/1](64/256), loss: 0.8018, ce: 0.8018, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000434, epoch_time: 0.000min
+Epoch:[1/1](80/256), loss: 0.8522, ce: 0.8522, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000400, epoch_time: 0.000min
+Epoch:[1/1](96/256), loss: 1.1820, ce: 1.1820, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000361, epoch_time: 0.000min
+Epoch:[1/1](112/256), loss: 0.9848, ce: 0.9848, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000319, epoch_time: 0.000min
+Epoch:[1/1](128/256), loss: 0.8313, ce: 0.8313, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000275, epoch_time: 0.000min
+Epoch:[1/1](144/256), loss: 0.8658, ce: 0.8658, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000231, epoch_time: 0.000min
+Epoch:[1/1](160/256), loss: 0.9115, ce: 0.9115, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000189, epoch_time: 0.000min
+Epoch:[1/1](176/256), loss: 0.9302, ce: 0.9302, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000150, epoch_time: 0.000min
+Epoch:[1/1](192/256), loss: 0.7517, ce: 0.7517, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000116, epoch_time: 0.000min
+Epoch:[1/1](208/256), loss: 0.8225, ce: 0.8225, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000088, epoch_time: 0.000min
+Epoch:[1/1](224/256), loss: 1.0792, ce: 1.0792, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000067, epoch_time: 0.000min
+Epoch:[1/1](240/256), loss: 0.9198, ce: 0.9198, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000054, epoch_time: 0.000min
+Epoch:[1/1](256/256), loss: 0.8039, ce: 0.8039, aux_loss: 0.0000, distill: 0.0000, learning_rate: 0.00000050, epoch_time: 0.000min
+-rw-r--r-- 1 root root 132M Nov 24 00:42 ../out/cloud_ce_768.pth
+2026-11-23T16:42:34Z distillation
+python -u train_distillation.py --device cuda:0 --dtype bfloat16 --epochs 1 --batch_size 2 --num_workers 0 --max_seq_len 512 --accumulation_steps 8 --save_interval 64 --log_interval 16 --teacher_use_moe 1 --from_student_weight grpo --from_teacher_weight grpo --data_path ../dataset/sharing_kd_512.jsonl --temperature 2 --alpha 0.5 --save_weight cloud_kd
+Model Params: 63.91M
+Trainable Params: 63.912M
+学生模型总参数量：63.912 M
+Model Params: 198.42M-A63.94M
+Trainable Params: 198.417M
+?????????198.417 M
+Epoch:[1/1](16/256), loss: 1.5192, ce: 1.1756, aux_loss: 0.0000, distill: 1.8628, learning_rate: 0.00000496, epoch_time: 0.000min
+Epoch:[1/1](32/256), loss: 1.3072, ce: 1.1430, aux_loss: 0.0000, distill: 1.4714, learning_rate: 0.00000483, epoch_time: 0.000min
+Epoch:[1/1](48/256), loss: 1.1708, ce: 0.9718, aux_loss: 0.0000, distill: 1.3699, learning_rate: 0.00000462, epoch_time: 0.000min
+Epoch:[1/1](64/256), loss: 1.0094, ce: 0.8270, aux_loss: 0.0000, distill: 1.1918, learning_rate: 0.00000434, epoch_time: 0.000min
+Epoch:[1/1](80/256), loss: 1.0414, ce: 0.8668, aux_loss: 0.0000, distill: 1.2160, learning_rate: 0.00000400, epoch_time: 0.000min
+Epoch:[1/1](96/256), loss: 1.2178, ce: 1.1899, aux_loss: 0.0000, distill: 1.2456, learning_rate: 0.00000361, epoch_time: 0.000min
+Epoch:[1/1](112/256), loss: 1.0732, ce: 1.0080, aux_loss: 0.0000, distill: 1.1385, learning_rate: 0.00000319, epoch_time: 0.000min
+Epoch:[1/1](128/256), loss: 1.0759, ce: 0.8539, aux_loss: 0.0000, distill: 1.2979, learning_rate: 0.00000275, epoch_time: 0.000min
+Epoch:[1/1](144/256), loss: 1.0413, ce: 0.8564, aux_loss: 0.0000, distill: 1.2263, learning_rate: 0.00000231, epoch_time: 0.000min
+Epoch:[1/1](160/256), loss: 1.1091, ce: 0.9400, aux_loss: 0.0000, distill: 1.2782, learning_rate: 0.00000189, epoch_time: 0.000min
+Epoch:[1/1](176/256), loss: 1.0473, ce: 0.9535, aux_loss: 0.0000, distill: 1.1411, learning_rate: 0.00000150, epoch_time: 0.000min
+Epoch:[1/1](192/256), loss: 0.8981, ce: 0.7781, aux_loss: 0.0000, distill: 1.0181, learning_rate: 0.00000116, epoch_time: 0.000min
+Epoch:[1/1](208/256), loss: 1.0770, ce: 0.8498, aux_loss: 0.0000, distill: 1.3042, learning_rate: 0.00000088, epoch_time: 0.000min
+Epoch:[1/1](224/256), loss: 1.0992, ce: 1.0778, aux_loss: 0.0000, distill: 1.1207, learning_rate: 0.00000067, epoch_time: 0.000min
+Epoch:[1/1](240/256), loss: 1.0496, ce: 0.9400, aux_loss: 0.0000, distill: 1.1593, learning_rate: 0.00000054, epoch_time: 0.000min
+Epoch:[1/1](256/256), loss: 1.0126, ce: 0.8151, aux_loss: 0.0000, distill: 1.2102, learning_rate: 0.00000050, epoch_time: 0.000min
+-rw-r--r-- 1 root root 132M Nov 24 00:43 ../out/cloud_kd_768.pth
+2026-11-23T16:43:30Z inference
+前端请求收到 HTTP 401。只输出一行 JSON，包含 code（数字）和 action（字符串）。
+  [pretrain] 要获取前端请求收到 HTTP 401，只输出一行，可以使用以下代码：```json
+{
+  "title": "https://example.com",
+  "age": 30,
+  "city": "New York"
+}
+```这段代码首先定义了一个包含前端请求的字符串，然后使用 `json.loads()` 函数将该字符串转换为 JSON 格式的字符串，并将
+  [sft] 在前端请求中，如果只输出一行 JSON，并且包含代码（数字）和 action（字符串），那么通常情况下，你不需要在请求中包含代码，因为这会导致代码的嵌套结构混乱。然而，如果你在请求中包含代码，并且包含了代码，那么你可能希望在请求中包含代码，而不是直接在代码中包含代码。
+
+例如，假设你有一个简单的HTML页面，
+  [rl] 为了实现这个需求，我们需要确保在前端处理HTTP 401请求时，能够正确地解析和处理请求。以下是一个详细的步骤和代码示例：
+
+### 步骤 1: 确保前端处理HTTP 401
+
+1. **确保前端处理**：确保前端能够正确解析和处理请求。
+2. **验证与优化**：确保与前端的平衡与可持续性。
+
+### 步骤 2: 实现
+  [distillation] 要实现这个功能，你可以使用HTML、CSS和JavaScript。下面是一个简单的示例，展示了如何使用JavaScript来获取和处理HTTP 401的请求。
+
+1. **HTML**：创建一个包含所有必要的头部元素的样式，如`<code>`标签。
+
+2. **CSS**：添加一些基本的样式，如`<code>`、`<code>`、`<code>`
+  [ce_control] 要实现这个功能，你可以使用HTML、CSS和JavaScript。下面是一个简单的示例代码，展示了如何实现这个功能：
+
+1. **HTML**：创建一个包含一个包含代码的页面。
+2. **CSS**：添加一些基本样式，如粗体、斜体和下划线。
+3. **JavaScript**：添加一些JavaScript代码，用于处理用户输入并更新页面内容。
+
+下面是一个完整的示例代码：
+用户说网页打不开，Network 面板显示 HTTP 503。用两句话回答：第一句解释状态码，第二句描述前端该怎么处理。
+  [pretrain] 用户说网页打不开，Network 面板显示 HTTP 503。
+  [sft] 在网页开发中，当用户在浏览器中输入HTTP 503请求时，浏览器会显示一个状态码，表示请求的资源正在被中断。这个状态码通常用于指示请求是否成功，例如HTTP状态码为200（成功）。
+
+在这种情况下，用户可以通过以下步骤处理HTTP 503请求：
+
+1. **检查请求是否成功**：首先，浏览器会检查请求是否成功。如果请求成功，浏览器
+  [rl] 在构建一个网页时，确保用户能够清晰、准确地理解其状态和操作。以下是针对您提到的两个关键点的详细解释：
+
+1. **状态码与处理**：确保在与用户交互时，能够清晰、准确地反映其当前状态。
+
+2. **技术与平衡**：既体现在与既的真诚与平衡，既既既既既既既既与与。
+
+通过精炼且既
+  [distillation] 在网页打不开的情况下，用户需要确保在不使用浏览器的情况下，能够正常访问和处理HTTP 503。这通常涉及到以下步骤：
+
+1. **确保浏览器兼容性**：确保用户在浏览器中能够正常访问和处理HTTP 503。
+
+2. **优化用户体验**：优化加载速度，确保用户能够快速找到所需信息。
+
+3. **技术与安全**：确保技术与安全，避免潜在的安全
+  [ce_control] 用户说“用户说网页打不开，Network 面板显示 HTTP 503”，并用两句话回答：“第一句解释状态码，第二句描述前端该怎么处理”。
+
+用户可能是在测试或寻求帮助，希望了解如何处理HTTP 503请求。他们可能希望知道如何正确地处理HTTP请求，或者如何确保网站的响应速度。
+
+首先，我需要明确用户的需求。他们可能
+解释浏览器缓存和 CDN 缓存的区别。请用两条列表，每条只有一句话。
+  [pretrain] 1. 浏览器缓存：浏览器缓存是指浏览器在浏览器中存储和访问网页数据，通常是通过浏览器缓存来存储的。
+2. CDN缓存：CDN缓存是指浏览器在浏览器中存储和访问网页数据，通常是通过浏览器缓存来存储的。
+3. CDN缓存：CDN缓存是指浏览器在浏览器中存储和访问网页数据，通常是通过浏览器缓
+  [sft] 浏览器缓存（Cache Delivery Network，CDN）和CDN（Cloud Data Delivery Network，CDN）是两种不同的存储系统，它们在存储层面上有所不同。
+
+1. **CDN（Cloud Data Delivery Network）**：
+   - **定义**：CDN是一种分布式文件系统，它将数据存储在全球分布的
+  [rl] 浏览器缓存与 CDN 缓存的区别主要体现在以下几个方面：
+
+1. **性能与平衡**：
+   - **缓存与 CDN**：通常在性能与平衡之间找到平衡，既既满足了性能与平衡的平衡。
+   - **缓存与 CDN**：在平衡与的平衡中，缓存与 CDN 既既保持了性能与平衡，既既展现了平衡与。
+  [distillation] 浏览器缓存和CDN（Content Delivery Network）缓存是两种不同的缓存策略，它们在设计目标、性能和用户体验上存在显著差异。
+
+1. **缓存策略**：
+   - **目标**：缓存策略旨在提高系统性能，减少延迟，提升用户体验。
+   - **性能**：缓存的性能直接影响用户体验，但可能影响系统响应速度。
+   - **用户体验**：
+  [ce_control] 浏览器缓存和CDN（Content Delivery Network，CDN）是两种不同的网络资源管理技术，它们在缓存策略、CDN缓存策略、CDN缓存策略等方面存在显著差异。
+
+1. **缓存策略**：
+   - **CDN**：主要针对的是CDN服务，通过缓存机制减少对静态资源的访问，提高资源利用率。
+   - **
+/root/autodl-tmp/minimind-share/artifacts/stage_outputs.json
+前端请求收到 HTTP 401。只输出一行 JSON，包含 code（数字）和 action（字符串）。
+  [pretrain] 
+  [sft] 在前端请求中，如果只输出一行 JSON，并且包含代码（数字）和 action（字符串），那么通常情况下，你不需要在请求中包含代码，因为这会导致代码的嵌套结构混乱。然而，如果你在请求中包含代码，并且包含了代码，那么你可能希望在请求中包含代码，而不是直接在代码中包含代码。
+
+例如，假设你有一个简单的HTML页面，
+  [rl] 为了实现这个需求，我们需要确保在前端处理HTTP 401请求时，能够正确地解析和处理请求。以下是一个详细的步骤和代码示例：
+
+### 步骤 1: 确保前端处理HTTP 401
+
+1. **确保前端处理**：确保前端能够正确解析和处理请求。
+2. **验证与优化**：确保与前端的平衡与可持续性。
+
+### 步骤 2: 实现
+  [distillation] 要实现这个功能，你可以使用HTML、CSS和JavaScript。下面是一个简单的示例，展示了如何使用JavaScript来获取和处理HTTP 401的请求。
+
+1. **HTML**：创建一个包含所有必要的头部元素的样式，如`<code>`标签。
+
+2. **CSS**：添加一些基本的样式，如`<code>`、`<code>`、`<code>`
+  [ce_control] 要实现这个功能，你可以使用HTML、CSS和JavaScript。下面是一个简单的示例代码，展示了如何实现这个功能：
+
+1. **HTML**：创建一个包含一个包含代码的页面。
+2. **CSS**：添加一些基本样式，如粗体、斜体和下划线。
+3. **JavaScript**：添加一些JavaScript代码，用于处理用户输入并更新页面内容。
+
+下面是一个完整的示例代码：
+用户说网页打不开，Network 面板显示 HTTP 503。用两句话回答：第一句解释状态码，第二句描述前端该怎么处理。
+  [pretrain] 
+  [sft] 在网页开发中，当用户在浏览器中输入HTTP 503请求时，浏览器会显示一个状态码，表示请求的资源正在被中断。这个状态码通常用于指示请求是否成功，例如HTTP状态码为200（成功）。
+
+在这种情况下，用户可以通过以下步骤处理HTTP 503请求：
+
+1. **检查请求是否成功**：首先，浏览器会检查请求是否成功。如果请求成功，浏览器
+  [rl] 在构建一个网页时，确保用户能够清晰、准确地理解其状态和操作。以下是针对您提到的两个关键点的详细解释：
+
+1. **状态码与处理**：确保在与用户交互时，能够清晰、准确地反映其当前状态。
+
+2. **技术与平衡**：既体现在与既的真诚与平衡，既既既既既既既既与与。
+
+通过精炼且既
+  [distillation] 在网页打不开的情况下，用户需要确保在不使用浏览器的情况下，能够正常访问和处理HTTP 503。这通常涉及到以下步骤：
+
+1. **确保浏览器兼容性**：确保用户在浏览器中能够正常访问和处理HTTP 503。
+
+2. **优化用户体验**：优化加载速度，确保用户能够快速找到所需信息。
+
+3. **技术与安全**：确保技术与安全，避免潜在的安全
+  [ce_control] 用户说“用户说网页打不开，Network 面板显示 HTTP 503”，并用两句话回答：“第一句解释状态码，第二句描述前端该怎么处理”。
+
+用户可能是在测试或寻求帮助，希望了解如何处理HTTP 503请求。他们可能希望知道如何正确地处理HTTP请求，或者如何确保网站的响应速度。
+
+首先，我需要明确用户的需求。他们可能
+解释浏览器缓存和 CDN 缓存的区别。请用两条列表，每条只有一句话。
+  [pretrain] 
+  [sft] 浏览器缓存（Cache Delivery Network，CDN）和CDN（Cloud Data Delivery Network，CDN）是两种不同的存储系统，它们在存储层面上有所不同。
+
+1. **CDN（Cloud Data Delivery Network）**：
+   - **定义**：CDN是一种分布式文件系统，它将数据存储在全球分布的
+  [rl] 浏览器缓存与 CDN 缓存的区别主要体现在以下几个方面：
+
+1. **性能与平衡**：
+   - **缓存与 CDN**：通常在性能与平衡之间找到平衡，既既满足了性能与平衡的平衡。
+   - **缓存与 CDN**：在平衡与的平衡中，缓存与 CDN 既既保持了性能与平衡，既既展现了平衡与。
+  [distillation] 浏览器缓存和CDN（Content Delivery Network）缓存是两种不同的缓存策略，它们在设计目标、性能和用户体验上存在显著差异。
+
+1. **缓存策略**：
+   - **目标**：缓存策略旨在提高系统性能，减少延迟，提升用户体验。
+   - **性能**：缓存的性能直接影响用户体验，但可能影响系统响应速度。
+   - **用户体验**：
+  [ce_control] 浏览器缓存和CDN（Content Delivery Network，CDN）是两种不同的网络资源管理技术，它们在缓存策略、CDN缓存策略、CDN缓存策略等方面存在显著差异。
+
+1. **缓存策略**：
+   - **CDN**：主要针对的是CDN服务，通过缓存机制减少对静态资源的访问，提高资源利用率。
+   - **
+/root/autodl-tmp/minimind-share/artifacts/stage_outputs_all_chat.json
+2026-11-23T16:44:11Z complete
