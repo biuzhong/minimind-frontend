@@ -13,7 +13,19 @@ from evaluate_scenarios import challenge_rows, group_scores, recorded_family
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-RECORDS = Path(__file__).with_name("recorded")
+EXPERIMENTS = Path(__file__).parent
+COMPARISON = EXPERIMENTS / "comparison"
+DISTILLATION = EXPERIMENTS / "distillation"
+DATA_STAGES = {
+    "pretrain.jsonl": "pretrain", "prose_holdout.jsonl": "pretrain",
+    "sft.jsonl": "sft", "rl.jsonl": "rl", "teacher_sft.jsonl": "distillation",
+}
+
+
+def dataset(batch, name):
+    if name == "holdout.jsonl":
+        return COMPARISON / batch / "records" / name
+    return EXPERIMENTS / DATA_STAGES[name] / "data" / batch / name
 
 
 def read(directory, name):
@@ -25,22 +37,22 @@ def check_data():
         ("small", "sharing_from_scratch.py", "make_data"),
         ("expanded", "sharing_expanded.py", "build"),
     ):
-        recorded = RECORDS / label / "records"
+        recorded = COMPARISON / label / "records"
         run_data = runpy.run_path(str(ROOT / "scripts" / script))
         with tempfile.TemporaryDirectory() as temporary:
             created = Path(temporary)
             counts = run_data[builder](created)
             assert counts == read(recorded, "lineage.json")["data"], label
             for item in created.glob("*.jsonl"):
-                expected = (recorded / item.name).read_text(encoding="utf8")
+                expected = dataset(label, item.name).read_text(encoding="utf8")
                 assert item.read_text(encoding="utf8") == expected, item.name
     assert "torch" not in sys.modules
 
 
 def check_results():
-    expanded = RECORDS / "expanded" / "records"
+    expanded = COMPARISON / "expanded" / "records"
     results = {r["stage"]: r for r in read(expanded, "results.json")}
-    assert read(expanded, "teacher_kl.json")["reference_tokens"]["all"] == 5330
+    assert read(DISTILLATION / "evaluation" / "expanded", "teacher_kl.json")["reference_tokens"]["all"] == 5330
     assert [results[stage]["pass"] for stage in
             ("random", "pretrain", "sft", "rl", "teacher", "ce_control", "distillation")] == [
                 0, 0, 238, 227, 322, 277, 270
@@ -63,10 +75,9 @@ def check_results():
 def check_challenge():
     rows = challenge_rows()
     assert len(rows) == len({row["prompt"] for row in rows}) == 48
-    records = RECORDS / "expanded" / "records"
     existing = set()
-    for name in ("sft", "teacher_sft", "rl", "holdout"):
-        for line in (records / f"{name}.jsonl").read_text(encoding="utf8").splitlines():
+    for name in ("sft.jsonl", "teacher_sft.jsonl", "rl.jsonl", "holdout.jsonl"):
+        for line in dataset("expanded", name).read_text(encoding="utf8").splitlines():
             row = json.loads(line)
             existing.add(row["prompt"] if "prompt" in row else row["conversations"][1]["content"])
     assert existing.isdisjoint(row["prompt"] for row in rows)
@@ -79,9 +90,9 @@ def check_challenge():
 
 
 def check_1b_results():
-    directory = RECORDS / "teacher-1b" / "records"
+    directory = DISTILLATION / "records" / "teacher-1b"
     manifest = read(directory, "manifest.json")
-    training = RECORDS / "expanded" / "records" / "teacher_sft.jsonl"
+    training = dataset("expanded", "teacher_sft.jsonl")
     assert hashlib.sha256(training.read_bytes().replace(b"\r\n", b"\n")).hexdigest() == manifest["training_data_sha256"]
     assert manifest["training_examples"] == 3200
     assert (directory / "exit-code").read_text(encoding="utf8").strip() == "0"
@@ -91,6 +102,8 @@ def check_1b_results():
         assert all(len(stage["examples"]) == count for stage in stages)
     assert group_scores(original, recorded_family) == read(directory, "original-summary.json")
     summary = group_scores(challenge, lambda row: row["family"])
+    saved = DISTILLATION / "data" / "teacher-1b" / "challenge.jsonl"
+    assert [json.loads(line) for line in saved.read_text(encoding="utf8").splitlines()] == challenge_rows()
     assert summary == read(directory, "challenge-summary.json")
     assert [sum(group["pairs_passed"] for group in summary[stage].values()) for stage in
             ("scenes_ce", "scenes_kd64m", "scenes_kd1b")] == [9, 5, 1]
@@ -98,14 +111,14 @@ def check_1b_results():
 
 def check_links():
     for source in (ROOT / "README.md", ROOT / "README_en.md", ROOT / "docs/share.md",
-                   RECORDS / "README.md"):
+                   *EXPERIMENTS.rglob("README.md")):
         text = source.read_text(encoding="utf8")
         for match in re.finditer(r"\]\((?:<([^>]+)>|([^)\n]+))\)", text):
             href = match[1] or match[2]
             if href.startswith(("http://", "https://", "#")):
                 continue
             assert (source.parent / href.split("#", 1)[0]).exists(), (source.name, href)
-    for source in Path(__file__).parent.glob("*.py"):
+    for source in EXPERIMENTS.rglob("*.py"):
         ast.parse(source.read_text(encoding="utf8"))
 
 

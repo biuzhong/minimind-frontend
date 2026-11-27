@@ -50,9 +50,9 @@
 
 **可见变化**　这道题保留了正确的 JSON 和 `login`。正文后面还有一题，能看到蒸馏后实际改对了哪一步。
 
-投屏时可以先让大家做两次判断。第一项是这行能不能解析，第二项是解析后能不能交给业务逻辑。此题来自 322 道固定留出题，逐题原始结果在 [results.json](../experiments/recorded/expanded/records/results.json)。
+投屏时可以先让大家做两次判断。第一项是这行能不能解析，第二项是解析后能不能交给业务逻辑。此题来自 322 道固定留出题，逐题原始结果在 [results.json](../experiments/comparison/expanded/records/results.json)。
 
-![同一题在四个训练阶段的 AutoDL JupyterLab 原始终端输出](../experiments/recorded/expanded/screenshots/07-jupyter-one-question-four-stages.png)
+![同一题在四个训练阶段的 AutoDL JupyterLab 原始终端输出](../experiments/comparison/expanded/screenshots/07-jupyter-one-question-four-stages.png)
 
 想看教师究竟改变了学生的哪种行为，可跳到[蒸馏的单独对照](#distillation-effect)。
 
@@ -81,7 +81,7 @@
                    官方 MiniMind 63.91M 权重 → 本轮教师 SFT
 ```
 
-主实验的学生宽度为 384，共 6 层。它先保存随机权重，再依次加载上一步的权重继续训练。最后两组共用同一份 RL 学生、同一批数据和同样的训练轮数。教师来自官方 MiniMind dense 权重，并在这次任务上继续微调。每个文件的父权重、命令和校验值都写在记录中。[权重血缘和训练命令](../experiments/recorded/expanded/records/lineage.json) · [权重 SHA-256](../experiments/recorded/expanded/records/SHA256SUMS)
+主实验的学生宽度为 384，共 6 层。它先保存随机权重，再依次加载上一步的权重继续训练。最后两组共用同一份 RL 学生、同一批数据和同样的训练轮数。教师来自官方 MiniMind dense 权重，并在这次任务上继续微调。每个文件的父权重、命令和校验值都写在记录中。[权重血缘和训练命令](../experiments/comparison/expanded/records/lineage.json) · [权重 SHA-256](../experiments/comparison/expanded/records/SHA256SUMS)
 
 | 术语 | 前端怎么理解 |
 | --- | --- |
@@ -112,7 +112,7 @@
 状态码是 200，前端动作是 ok。
 ```
 
-![AutoDL 预训练日志、命令与权重](../experiments/recorded/expanded/screenshots/02-jupyter-pretrain.png)
+![AutoDL 预训练日志、命令与权重](../experiments/pretrain/screenshots/expanded/02-jupyter-pretrain.png)
 
 ### 代码 把正文的下一 token 当作答案
 
@@ -131,13 +131,13 @@ loss = F.cross_entropy(
 
 可以把移位理解为把期望值提前一格对齐。第 t 格用已经读过的内容预测第 t+1 格。填充位置用 `-100` 标记，交叉熵跳过这些位置。
 
-这里的输入文件是 [pretrain.jsonl](../experiments/recorded/expanded/records/pretrain.jsonl)。JSONL 每行一个独立 JSON 对象，预训练读取其中的 `text`。截图展示本次命令、训练损失和最终权重。注意区分训练日志里的损失和上面用留出文本重新计算的 CE。[预训练原始日志](../experiments/recorded/expanded/records/pretrain.log)
+这里的输入文件是 [pretrain.jsonl](../experiments/pretrain/data/expanded/pretrain.jsonl)。JSONL 每行一个独立 JSON 对象，预训练读取其中的 `text`。截图展示本次命令、训练损失和最终权重。注意区分训练日志里的损失和上面用留出文本重新计算的 CE。[预训练原始日志](../experiments/pretrain/logs/expanded/pretrain.log)
 
 ## SFT 看接口是否能消费
 
 1,952 条指令对话把题目和参考 JSON 成对提供。现场可把模型当成接口，用 `JSON.parse` 看格式，再检验 code 和 action 值。格式正确和业务正确各记一列。四份聊天权重使用同一个聊天模板和题面。
 
-![AutoDL SFT 日志、命令与权重](../experiments/recorded/expanded/screenshots/03-jupyter-sft.png)
+![AutoDL SFT 日志、命令与权重](../experiments/sft/screenshots/expanded/03-jupyter-sft.png)
 
 ### 代码 只给助手回答打分
 
@@ -146,7 +146,7 @@ loss = F.cross_entropy(
 labels = [-100] * len(input_ids)
 labels[assistant_start:assistant_end] = input_ids[assistant_start:assistant_end]
 
-# trainer/train_full_sft.py 使用同一个模型入口
+# experiments/sft/train_full_sft.py 使用同一个模型入口
 result = model(input_ids, labels=labels)
 loss = result.loss
 ```
@@ -159,7 +159,7 @@ loss = result.loss
 {"conversations":[{"role":"user","content":"接口返回 HTTP 401，请给出一行 JSON。"},{"role":"assistant","content":"{\"code\":401,\"action\":\"login\"}"}]}
 ```
 
-[实际 SFT 数据](../experiments/recorded/expanded/records/sft.jsonl) · [SFT 原始日志](../experiments/recorded/expanded/records/sft.log)
+[实际 SFT 数据](../experiments/sft/data/expanded/sft.jsonl) · [SFT 原始日志](../experiments/sft/logs/expanded/sft.log)
 
 ## RL 看条件改变时动作会不会变
 
@@ -174,12 +174,12 @@ RL 是强化学习，MiniMind 里这次用的是 GRPO（组相对策略优化）
 | 白盒蒸馏 | {"code":401,"action":"login"} | {"code":503,"action":"retry"} | 8/32 |
 | 64M 教师 | {"code":401,"action":"refresh"} | {"code":503,"action":"stop"} | 32/32 |
 
-![AutoDL GRPO 奖励、训练日志及权重](../experiments/recorded/expanded/screenshots/04-jupyter-rl.png)
+![AutoDL GRPO 奖励、训练日志及权重](../experiments/rl/screenshots/expanded/04-jupyter-rl.png)
 
 ### 代码 先生成候选 再按奖励调整
 
 ```python
-# trainer/train_grpo.py 的 HTTP 规则奖励分支，展示一组候选
+# experiments/rl/train_grpo.py 的 HTTP 规则奖励分支，展示一组候选
 group_rewards = torch.tensor([
     score_answer(answer, expected_json) for answer in sampled_answers
 ])
@@ -190,7 +190,7 @@ advantage = (group_rewards - group_rewards.mean()) / (
 
 `score_answer` 在 `trainer/http_demo_reward.py`，根据能否解析 JSON、状态码、动作和输出结构分别给分。GRPO 用优势调节各候选的更新方向。同组候选分数一样时，优势就是零。本轮平均奖励从 **2.4674** 升到 **2.4935**，策略题完整通过从 **33** 降到 **29**，可以用这组数据说明部分得分与业务验收有差别。
 
-本轮 RL 的可解析 JSON 对象从 **307 增到 319**。因此现场可以分别问「格式有没有学好」和「条件分支有没有选对」。[真实采样和奖励日志](../experiments/recorded/expanded/records/rl.log)
+本轮 RL 的可解析 JSON 对象从 **307 增到 319**。因此现场可以分别问「格式有没有学好」和「条件分支有没有选对」。[真实采样和奖励日志](../experiments/rl/logs/expanded/rl.log)
 
 ## 蒸馏先测教师 再比较两组学生
 
@@ -198,14 +198,14 @@ advantage = (group_rewards - group_rewards.mean()) / (
 
 两组学生从同一份 RL 权重开始，使用相同数据与学习率。纯 CE 只看标准答案，白盒蒸馏再读取教师概率。KL 衡量两组概率分布的差异，蒸馏温度 T 是 2。蒸馏后学生参数量与原学生一致。
 
-![AutoDL 64M 教师的实际白盒蒸馏日志](../experiments/recorded/expanded/screenshots/05-jupyter-distillation.png)
+![AutoDL 64M 教师的实际白盒蒸馏日志](../experiments/distillation/screenshots/expanded/05-jupyter-distillation.png)
 
 更大的备选是同词表的 MiniMind 198M MoE，可继续做白盒。Qwen3-0.6B 或 1.7B 的词表不同，可让教师生成经过规则验证的 JSON，再把这些文本拿来训练 MiniMind，这属于黑盒蒸馏。本轮扩大实验使用 64M dense 教师。[MiniMind 权重](https://huggingface.co/jingyaogong/minimind-3-pytorch/tree/main) · [Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) · [Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B)
 
 ### 代码 冻结教师 学生同时看答案和概率
 
 ```python
-# trainer/train_distillation.py 的等价节选
+# experiments/distillation/train_distillation.py 的等价节选
 teacher.eval().requires_grad_(False)
 with torch.no_grad():
     teacher_probs = F.softmax(teacher_logits.float() / T, dim=-1)
@@ -216,7 +216,7 @@ loss = alpha * ce_loss + (1 - alpha) * T**2 * kl
 
 代码只在参与监督的助手 token 上做比较。纯 CE 的 alpha 为 1，模型只学习标准答案。蒸馏的 alpha 为 0.5，学生的优化目标额外包含模仿教师。学生仍使用相同的 13.52M 参数结构。 [知识蒸馏论文](https://arxiv.org/abs/1503.02531)
 
-两组都从同一份 RL 权重继续训练一轮，这样可以估计加入教师概率的影响。与 RL 的 **29/66** 相比，白盒蒸馏提升到 **40/66**，同数据的纯 CE 达到 **45/66**。这就能分别看到继续训练带来的改善，以及在这组配置下加入教师概率后的净差异。[蒸馏日志](../experiments/recorded/expanded/records/distillation.log) · [纯 CE 日志](../experiments/recorded/expanded/records/ce_control.log) · [教师预评估](../experiments/recorded/expanded/records/teacher_gate.json)
+两组都从同一份 RL 权重继续训练一轮，这样可以估计加入教师概率的影响。与 RL 的 **29/66** 相比，白盒蒸馏提升到 **40/66**，同数据的纯 CE 达到 **45/66**。这就能分别看到继续训练带来的改善，以及在这组配置下加入教师概率后的净差异。[蒸馏日志](../experiments/distillation/logs/expanded/distillation.log) · [纯 CE 日志](../experiments/distillation/logs/expanded/ce_control.log) · [教师预评估](../experiments/distillation/evaluation/expanded/teacher_gate.json)
 
 <a id="distillation-effect"></a>
 
@@ -237,7 +237,7 @@ loss = alpha * ce_loss + (1 - alpha) * T**2 * kl
 
 RL 学生和纯 CE 对照在两种条件下都选 `login`。蒸馏学生在有凭证时改成 `refresh`，无凭证时保留 `login`，这对题上的动作和教师一致。部署这份学生仍只加载原来的 **13.52M 参数**，教师是 **63.91M**。
 
-![AutoDL JupyterLab 蒸馏对照 两种刷新条件和教师分布距离的实际记录](../experiments/recorded/expanded/screenshots/08-jupyter-distillation-effect.png)
+![AutoDL JupyterLab 蒸馏对照 两种刷新条件和教师分布距离的实际记录](../experiments/distillation/screenshots/expanded/08-jupyter-distillation-effect.png)
 
 **还能测到学生的预测分布有多接近教师。** 在 AutoDL 上，用同一批 322 道留出题和同样的参考答案前缀，对 5,330 个答案 token 位置计算平均 `T² × KL(教师 || 学生)`。这里把相同位置的候选 token 概率放在一起比较，温度统一为 2，数值越小表示分布越接近教师。
 
@@ -247,7 +247,7 @@ RL 学生和纯 CE 对照在两种条件下都选 `login`。蒸馏学生在有�
 | 纯 CE 对照 | 4.439 | 4.852 | 45/66 |
 | 蒸馏学生 | 1.987 | 2.400 | 40/66 |
 
-**现场讲两层结论。** 蒸馏的全量 KL 比纯 CE 低约 **55%**，说明它学到了更接近教师的概率分布。策略题相对 RL 修正 **11 道**；相对同数据纯 CE，修正 **4 道**、退步 **9 道**，所以最终通过数仍少 5 道。两种指标展示的是同一次实验的不同变化。 [留出 KL 原始结果](../experiments/recorded/expanded/records/teacher_kl.json) · [逐题输出](../experiments/recorded/expanded/records/results.json) · [可复跑的 KL 评估代码](../experiments/measure_teacher_kl.py)
+**现场讲两层结论。** 蒸馏的全量 KL 比纯 CE 低约 **55%**，说明它学到了更接近教师的概率分布。策略题相对 RL 修正 **11 道**；相对同数据纯 CE，修正 **4 道**、退步 **9 道**，所以最终通过数仍少 5 道。两种指标展示的是同一次实验的不同变化。 [留出 KL 原始结果](../experiments/distillation/evaluation/expanded/teacher_kl.json) · [逐题输出](../experiments/comparison/expanded/records/results.json) · [可复跑的 KL 评估代码](../experiments/distillation/measure_teacher_kl.py)
 
 ## 同一套留出题的完整结果
 
@@ -263,11 +263,11 @@ RL 学生和纯 CE 对照在两种条件下都选 `login`。蒸馏学生在有�
 | 纯 CE 对照 | 256/256 | 232/256 | 66/66 | 45/66 |
 | 白盒蒸馏 | 256/256 | 230/256 | 66/66 | 40/66 |
 
-![AutoDL 浏览器终端的本轮测试汇总](../experiments/recorded/expanded/screenshots/06-jupyter-effects.png)
+![AutoDL 浏览器终端的本轮测试汇总](../experiments/comparison/expanded/screenshots/06-jupyter-effects.png)
 
 ## 多个前端场景的四阶段实测
 
-以下题面与四阶段输出都来自同一份 AutoDL 逐题记录。每道题在各阶段使用同一个输入。403、409 和 429 是三道独立问题，两个 503 问题只改了请求方法。预训练列展示原输出的开头，其余单元格展示完整回答。[逐题原始输出，含教师与纯 CE](../experiments/recorded/expanded/records/results.json)
+以下题面与四阶段输出都来自同一份 AutoDL 逐题记录。每道题在各阶段使用同一个输入。403、409 和 429 是三道独立问题，两个 503 问题只改了请求方法。预训练列展示原输出的开头，其余单元格展示完整回答。[逐题原始输出，含教师与纯 CE](../experiments/comparison/expanded/records/results.json)
 
 | 场景与题面 | 参考答案 | 预训练 | SFT | RL | 蒸馏 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -322,15 +322,15 @@ python experiments/evaluate_scenarios.py challenge \
 
 MiniCPM5-1B 从公开权重出发，用已有的 3,200 条任务样本微调最后两层 Transformer 和最终归一化层。这一轮复用上一轮的 13.522M RL 权重，给三份学生相同的样本、顺序和更新次数。纯 CE 只学习标准答案，另外两组分别加 63.91M 教师和 1B 教师的答案概率。
 
-MiniCPM5 和 MiniMind 的 tokenizer 不同。两位教师各用自己的 tokenizer，对同一组候选 JSON 文本计算分数。然后在候选答案这一层比较概率，例如让学生学习教师给 `retry` 和 `stop` 分配的相对概率。最后测试时仍让学生自由生成，再用同一套 JSON 合约打分。之前同词表的逐 token 蒸馏结果也一并保留。[1B 实验代码](../experiments/distill_1b.py) · [MiniCPM5-1B 模型说明](https://huggingface.co/openbmb/MiniCPM5-1B)
+MiniCPM5 和 MiniMind 的 tokenizer 不同。两位教师各用自己的 tokenizer，对同一组候选 JSON 文本计算分数。然后在候选答案这一层比较概率，例如让学生学习教师给 `retry` 和 `stop` 分配的相对概率。最后测试时仍让学生自由生成，再用同一套 JSON 合约打分。之前同词表的逐 token 蒸馏结果也一并保留。[1B 实验代码](../experiments/distillation/distill_1b.py) · [MiniCPM5-1B 模型说明](https://huggingface.co/openbmb/MiniCPM5-1B)
 
 ### 1B 教师的 AutoDL 实测结论
 
-**1B 教师蒸馏提高了同类题成绩，带干扰的新题表现则低于纯 CE。** AutoDL 实测教师共有 **1,080,632,832** 个参数，更新了 **56,630,784** 个参数。教师微调和三个学生分支各跑 200 步。学生部署时仍是 13.522M 参数。本轮从 [0a94dc5 源码提交](https://github.com/biuzhong/minimind-frontend/commit/0a94dc57941abca9dd6b05ca6121b844efaf974e) 运行，权重和数据哈希保存在实验清单中。[训练日志](../experiments/recorded/teacher-1b/records/training.log) · [实验清单](../experiments/recorded/teacher-1b/records/manifest.json)
+**1B 教师蒸馏提高了同类题成绩，带干扰的新题表现则低于纯 CE。** AutoDL 实测教师共有 **1,080,632,832** 个参数，更新了 **56,630,784** 个参数。教师微调和三个学生分支各跑 200 步。学生部署时仍是 13.522M 参数。本轮从 [0a94dc5 源码提交](https://github.com/biuzhong/minimind-frontend/commit/0a94dc57941abca9dd6b05ca6121b844efaf974e) 运行，权重和数据哈希保存在实验清单中。[训练日志](../experiments/distillation/logs/teacher-1b/training.log) · [实验清单](../experiments/distillation/records/teacher-1b/manifest.json)
 
-![AutoDL JupyterLab 的教师参数量、SFT 命令和 200 步训练日志](../experiments/recorded/teacher-1b/screenshots/01-jupyter-teacher-sft.png)
+![AutoDL JupyterLab 的教师参数量、SFT 命令和 200 步训练日志](../experiments/distillation/screenshots/teacher-1b/01-jupyter-teacher-sft.png)
 
-![AutoDL JupyterLab 中的教师候选答案概率计算和三个学生训练分支](../experiments/recorded/teacher-1b/screenshots/02-jupyter-answer-distillation.png)
+![AutoDL JupyterLab 中的教师候选答案概率计算和三个学生训练分支](../experiments/distillation/screenshots/teacher-1b/02-jupyter-answer-distillation.png)
 
 | 模型 | 原 322 道留出题完整通过 | 新 48 道带干扰题完整通过 | 新 24 对题两问都对 |
 | --- | ---: | ---: | ---: |
@@ -343,9 +343,9 @@ MiniCPM5 和 MiniMind 的 tokenizer 不同。两位教师各用自己的 tokeniz
 | 63.91M 教师答案分布蒸馏学生 | 293/322 | 16/48 | 5/24 |
 | 1.08B 教师答案分布蒸馏学生 | **314/322** | **12/48** | **1/24** |
 
-![AutoDL JupyterLab 中的新旧题通过数和分场景成对通过数](../experiments/recorded/teacher-1b/screenshots/03-jupyter-scenario-results.png)
+![AutoDL JupyterLab 中的新旧题通过数和分场景成对通过数](../experiments/distillation/screenshots/teacher-1b/03-jupyter-scenario-results.png)
 
-原题里，1B 蒸馏相对同轮纯 CE 多答对 **16 道 400 参数题**、**8 道 429 限流题**，少答对 **8 道 503 策略题**，净增 16 道。新题里，1B 教师在登录续期和读写重试上的成对通过数分别是 **4/4 和 3/4**，学生只有 **1/4 和 0/4**。素材权限和接口限流上，1B 教师自己也是 **0/4**，原教师分别是 **3/4 和 2/4**。这组比较反映两位教师在当前训练配置下的差异，两位教师也有不同的模型架构、词表和预训练经历。[原题分场景计数](../experiments/recorded/teacher-1b/records/original-summary.json) · [新题分场景计数](../experiments/recorded/teacher-1b/records/challenge-summary.json)
+原题里，1B 蒸馏相对同轮纯 CE 多答对 **16 道 400 参数题**、**8 道 429 限流题**，少答对 **8 道 503 策略题**，净增 16 道。新题里，1B 教师在登录续期和读写重试上的成对通过数分别是 **4/4 和 3/4**，学生只有 **1/4 和 0/4**。素材权限和接口限流上，1B 教师自己也是 **0/4**，原教师分别是 **3/4 和 2/4**。这组比较反映两位教师在当前训练配置下的差异，两位教师也有不同的模型架构、词表和预训练经历。[原题分场景计数](../experiments/distillation/records/teacher-1b/original-summary.json) · [新题分场景计数](../experiments/distillation/records/teacher-1b/challenge-summary.json)
 
 下面三条是为投屏选取的实测样例。旧题的 400 错误码修正和新题被无关日志带偏，都可以从输出上直接看出来。
 
@@ -355,7 +355,7 @@ MiniCPM5 和 MiniMind 的 tokenizer 不同。两位教师各用自己的 tokeniz
 | **同步提交失败**<br>同步面板联调。上一条日志是别的请求，返回 HTTP 200。本次为 HTTP 503，method=POST。只返回一行 JSON，包含 code 和 action。 | `{"code":503,"action":"stop"}` | `{"code":503,"action":"stop"}` | `{"code":503,"action":"stop"}` | `{"code":200,"action":"ok"}` |
 | **素材读取权限**<br>素材库读取联调。上一条日志是别的请求，返回 HTTP 200。本次为 HTTP 403，method=GET。只返回一行 JSON，包含 code 和 action。 | `{"code":403,"action":"deny"}` | `{"code":403,"action":"deny"}` | `{"code":403,"action":"retry"}` | `{"code":403,"action":"retry"}` |
 
-在 503 样例里，教师选对了当前请求，学生却从历史日志提取了 200。在 403 样例里，教师和学生都把权限不足判断为重试。把这两个结果和原题的提升一起展示，能说明教师示范的质量、学生能否迁移，以及评测题如何设计，都会影响最终看见的收益。[原 322 题完整生成](../experiments/recorded/teacher-1b/records/original-results.json) · [新 48 题完整生成](../experiments/recorded/teacher-1b/records/challenge-results.json)
+在 503 样例里，教师选对了当前请求，学生却从历史日志提取了 200。在 403 样例里，教师和学生都把权限不足判断为重试。把这两个结果和原题的提升一起展示，能说明教师示范的质量、学生能否迁移，以及评测题如何设计，都会影响最终看见的收益。[原 322 题完整生成](../experiments/distillation/records/teacher-1b/original-results.json) · [新 48 题完整生成](../experiments/distillation/records/teacher-1b/challenge-results.json)
 
 ### 1B 实验复跑命令
 
@@ -368,7 +368,7 @@ hf download openbmb/MiniCPM5-1B \
   --local-dir "$BASE/teacher-1b-base"
 
 cd "$BASE/expanded/source"
-python experiments/distill_1b.py \
+python experiments/distillation/distill_1b.py \
   --run-dir ../records \
   --teacher-dir "$BASE/teacher-1b-base" \
   --output "$BASE/1b" 2>&1 | tee "$BASE/1b.log"
@@ -378,10 +378,10 @@ python experiments/distill_1b.py \
 
 | 版本 | 实际执行的路线 | 留下了什么 |
 | --- | --- | --- |
-| 首轮官方权重演示 | 预训练、SFT、GRPO 加载官方权重做推理，另用 512 条样本训练纯 CE 和蒸馏。 | 用来走通 GPU 云端流程。四份模型在开场的单行 JSON 题上都没有通过。 [首轮实测](../experiments/recorded/README.md) |
-| 小样本从零训练 | 4.98M 学生从随机权重走完四步，13.52M 自训教师参与蒸馏。 | 固定 33 题，完整通过数为预训练 0、SFT 28、RL 29、蒸馏 28。 [从零训练小样本](../experiments/recorded/small/records/results.json) |
-| 本次扩大实验 | 13.52M 学生从随机权重走完四步，在同词表的 63.91M 教师上做额外 SFT 后蒸馏。 | 训练含 5,760 条预训练文本、1,952 条 SFT 对话、320 条 RL 条件题及 3,200 条教师和蒸馏用样本。主稿采用这版的 322 题和截图。 [数据与权重血缘](../experiments/recorded/expanded/records/lineage.json) |
-| 1B 教师对照 | 复用 13.52M RL 学生，比较纯 CE、63.91M 教师和 1.08B 教师的答案分布蒸馏。 | 使用原 322 题和 48 道带干扰的新题，保留按场景统计和逐题回答。 [完整记录](../experiments/recorded/teacher-1b/records) |
+| 首轮官方权重演示 | 预训练、SFT、GRPO 加载官方权重做推理，另用 512 条样本训练纯 CE 和蒸馏。 | 用来走通 GPU 云端流程。四份模型在开场的单行 JSON 题上都没有通过。 [首轮实测](../experiments/README.md) |
+| 小样本从零训练 | 4.98M 学生从随机权重走完四步，13.52M 自训教师参与蒸馏。 | 固定 33 题，完整通过数为预训练 0、SFT 28、RL 29、蒸馏 28。 [从零训练小样本](../experiments/comparison/small/records/results.json) |
+| 本次扩大实验 | 13.52M 学生从随机权重走完四步，在同词表的 63.91M 教师上做额外 SFT 后蒸馏。 | 训练含 5,760 条预训练文本、1,952 条 SFT 对话、320 条 RL 条件题及 3,200 条教师和蒸馏用样本。主稿采用这版的 322 题和截图。 [数据与权重血缘](../experiments/comparison/expanded/records/lineage.json) |
+| 1B 教师对照 | 复用 13.52M RL 学生，比较纯 CE、63.91M 教师和 1.08B 教师的答案分布蒸馏。 | 使用原 322 题和 48 道带干扰的新题，保留按场景统计和逐题回答。 [完整记录](../experiments/distillation/records/teacher-1b) |
 
 从小样本放大以后，差异要放到对应的训练目标上读。续写 CE 下降能证明续写任务变好，JSON 解析率说明格式学习，规则题通过数用于判断奖励带来的业务行为。蒸馏用同一起点的纯 CE 组做参照，减少把「多训了一轮」误归因给教师的可能。
 
@@ -389,11 +389,11 @@ python experiments/distill_1b.py \
 
 这次使用了一张 AutoDL GPU，实测 PyTorch 2.8.0、CUDA 12.8、BF16 可用。`nvidia-smi` 上的 CUDA 13.2 是驱动报告的支持版本，PyTorch 检测行显示的是本次实际运行的 CUDA 版本。BF16 是节省显存的数字表示方式。
 
-![AutoDL JupyterLab 原图 GPU 环境](../experiments/recorded/expanded/screenshots/01-jupyter-environment.png)
+![AutoDL JupyterLab 原图 GPU 环境](../experiments/comparison/expanded/screenshots/01-jupyter-environment.png)
 
 租卡时从控制台进入实例页，选 Linux 的 CUDA 版 PyTorch 镜像。这个规模可以从单张 24 GB RTX 3090 或 4090 起步，实际显存还与批大小、序列长度和同时加载的模型有关。按量实例在控制台开机后开始计费，价格以控制台为准。训练完成并回传结果后可关机。登录用控制台提供的 SSH 指令，或打开 JupyterLab 终端。 [AutoDL 创建实例](https://www.autodl.com/docs/quick_start/) · [镜像列表](https://www.autodl.com/docs/base_config/) · [SSH 指南](https://www.autodl.com/docs/ssh/) · [计费说明](https://www.autodl.com/docs/price/)
 
-本稿的图片均是浏览器里的 JupyterLab 终端原图。终端展示了本次训练和评估保存的实际记录。首轮蒸馏日志中的教师参数中文标签曾显示为问号，修复后用相同权重复跑，检查了每个参数张量与原权重一致。本轮扩大实验的蒸馏图已显示正常。 [原始环境日志](../experiments/recorded/expanded/records/environment.log) · [全链路日志](../experiments/recorded/expanded/records/runner.log) · [标签修复验证记录](../experiments/recorded/small/records/distillation-utf8.log)
+本稿的图片均是浏览器里的 JupyterLab 终端原图。终端展示了本次训练和评估保存的实际记录。首轮蒸馏日志中的教师参数中文标签曾显示为问号，修复后用相同权重复跑，检查了每个参数张量与原权重一致。本轮扩大实验的蒸馏图已显示正常。 [原始环境日志](../experiments/comparison/expanded/records/environment.log) · [全链路日志](../experiments/comparison/expanded/records/runner.log) · [标签修复验证记录](../experiments/distillation/logs/small/distillation-utf8.log)
 
 ### 一键复跑整条链路
 
@@ -411,8 +411,8 @@ python experiments/run.py expanded --run-dir "$HOME/minimind-runs/expanded"
 | --- | --- |
 | `scripts/sharing_expanded.py` | 生成训练和留出数据，串联阶段权重，记录父权重和逐题评估。 |
 | `trainer/http_demo_reward.py` | 把 JSON 格式、状态码和动作编码成可复查的规则奖励。 |
-| `trainer/train_grpo.py` | 给 GRPO 增加 HTTP 规则奖励和采样温度选项。 |
-| `trainer/train_distillation.py` | 增加纯 CE 对照路径，检查共享词表维度，用 FP32 计算分布损失。 |
+| `experiments/rl/train_grpo.py` | 给 GRPO 增加 HTTP 规则奖励和采样温度选项。 |
+| `experiments/distillation/train_distillation.py` | 增加纯 CE 对照路径，检查共享词表维度，用 FP32 计算分布损失。 |
 
 项目保留 MiniMind 上游历史。 [扩大实验代码](../scripts/sharing_expanded.py) · [固定基线](https://github.com/jingyaogong/minimind/tree/3d85c71e5cd86b8622107eb1f5745bdb4cc5590a)
 
@@ -420,15 +420,17 @@ python experiments/run.py expanded --run-dir "$HOME/minimind-runs/expanded"
 
 | 想看什么 | 文件 |
 | --- | --- |
-| 同题的所有原始回答 | [逐题结果 JSON](../experiments/recorded/expanded/records/results.json) |
-| 随机与预训练的续写 | [续写输出与 CE](../experiments/recorded/expanded/records/continuation.json) |
-| 各组得分与教师预评估 | [分组结果](../experiments/recorded/expanded/records/summary.json) · [教师预评估](../experiments/recorded/expanded/records/teacher_gate.json) |
-| 训练参数、父权重和校验 | [训练血缘](../experiments/recorded/expanded/records/lineage.json) · [权重校验](../experiments/recorded/expanded/records/SHA256SUMS) |
+| 同题的所有原始回答 | [逐题结果 JSON](../experiments/comparison/expanded/records/results.json) |
+| 随机与预训练的续写 | [续写输出与 CE](../experiments/pretrain/evaluation/expanded/continuation.json) |
+| 各组得分与教师预评估 | [分组结果](../experiments/comparison/expanded/records/summary.json) · [教师预评估](../experiments/distillation/evaluation/expanded/teacher_gate.json) |
+| 训练参数、父权重和校验 | [训练血缘](../experiments/comparison/expanded/records/lineage.json) · [权重校验](../experiments/comparison/expanded/records/SHA256SUMS) |
 | 可以继续推理的学生 | 复跑后在 `source/out/` 查看四阶段权重。 |
 
 <a id="stage-examples"></a>
 
 ## 四阶段可执行示例
+
+也可以直接打开 [预训练](../experiments/pretrain/README.md)、[SFT](../experiments/sft/README.md)、[RL](../experiments/rl/README.md) 和 [蒸馏](../experiments/distillation/README.md) 的目录，逐阶段查看命令、代码和原始记录。
 
 现场要讲原理就看各阶段的 Python 节选。要演示工程流程，可以在云端终端按顺序跑下面的命令。训练参数来自本次实跑，先建独立目录，保留首跑产物。
 
@@ -443,7 +445,7 @@ PY=$(command -v python)
 RUN=$(mktemp -d "$BASE/stage-demo-XXXXXX")
 
 mkdir -p "$RUN/minimind/out" "$RUN/records"
-git archive HEAD dataset model scripts trainer | tar -xf - -C "$RUN/minimind"
+git archive HEAD dataset model scripts trainer experiments | tar -xf - -C "$RUN/minimind"
 cp "$BASE"/records/{pretrain,sft,rl,teacher_sft,holdout}.jsonl "$RUN/records/"
 cp "$BASE"/source/out/{expand_random_384,expand_teacher_768}.pth "$RUN/minimind/out/"
 cd "$RUN/minimind/trainer"
@@ -454,7 +456,7 @@ cd "$RUN/minimind/trainer"
 输入是技术文本，读入保存的随机权重 `expand_random_384.pth`，输出 `expand_pre_384.pth`。
 
 ```bash
-"$PY" -u train_pretrain.py \
+"$PY" -u ../experiments/pretrain/train_pretrain.py \
   --device cuda:0 --epochs 2 --batch_size 32 --num_workers 0 \
   --accumulation_steps 1 --max_seq_len 128 --save_interval 1000 \
   --log_interval 20 --data_path ../../records/pretrain.jsonl \
@@ -467,7 +469,7 @@ cd "$RUN/minimind/trainer"
 切换到指令对话数据，读入 `expand_pre_384.pth`，输出 `expand_sft_384.pth`。
 
 ```bash
-"$PY" -u train_full_sft.py \
+"$PY" -u ../experiments/sft/train_full_sft.py \
   --device cuda:0 --epochs 6 --batch_size 32 --num_workers 0 \
   --accumulation_steps 1 --max_seq_len 128 --save_interval 1000 \
   --log_interval 20 --data_path ../../records/sft.jsonl \
@@ -480,7 +482,7 @@ cd "$RUN/minimind/trainer"
 对每题采样 6 条候选，使用 HTTP 规则评分。读入 `expand_sft_384.pth`，输出 `expand_rl_384.pth`。
 
 ```bash
-"$PY" -u train_grpo.py \
+"$PY" -u ../experiments/rl/train_grpo.py \
   --device cuda:0 --epochs 3 --batch_size 8 --num_workers 0 \
   --accumulation_steps 1 --max_seq_len 128 --save_interval 1000 \
   --log_interval 8 --data_path ../../records/rl.jsonl --save_weight expand_rl \
@@ -495,7 +497,7 @@ cd "$RUN/minimind/trainer"
 从 `expand_rl_384.pth` 继续训练，加载已经微调好的 64M 教师 `expand_teacher_768.pth`。学生输出为 `expand_kd_384.pth`。
 
 ```bash
-"$PY" -u train_distillation.py \
+"$PY" -u ../experiments/distillation/train_distillation.py \
   --device cuda:0 --epochs 1 --batch_size 16 --num_workers 0 \
   --accumulation_steps 1 --max_seq_len 128 --save_interval 1000 \
   --log_interval 20 --data_path ../../records/teacher_sft.jsonl \

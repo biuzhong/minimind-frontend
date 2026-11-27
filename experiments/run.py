@@ -19,6 +19,19 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 INPUTS = Path(__file__).with_name("inputs.json")
 EXPERIMENTS = ("smoke", "official", "from-scratch", "expanded")
+SNAPSHOT_PATHS = (
+    "dataset", "model", "scripts", "trainer",
+    "experiments/pretrain/train_pretrain.py",
+    "experiments/sft/train_full_sft.py",
+    "experiments/rl/train_grpo.py",
+    "experiments/distillation/train_distillation.py",
+    "experiments/distillation/distill_1b.py",
+    "experiments/distillation/measure_teacher_kl.py",
+    "experiments/evaluate_scenarios.py",
+    "experiments/holdout_ce.py",
+    "experiments/measure_teacher_kl.py",
+    "experiments/distill_1b.py",
+)
 
 
 def sha256(path):
@@ -99,7 +112,7 @@ def prepare(run_dir, experiment, device, resume=False):
         archive = Path(staging) / "source.zip"
         subprocess.run(
             ["git", "-C", str(ROOT), "archive", "--format=zip", f"--output={archive}",
-             revision, "dataset", "model", "scripts", "trainer", "experiments/measure_teacher_kl.py", "experiments/holdout_ce.py"],
+             revision, *SNAPSHOT_PATHS],
             check=True,
         )
         extracted = Path(staging) / "source"

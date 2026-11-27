@@ -2,7 +2,9 @@
 
 A MiniMind training walkthrough for frontend developers. Compare pretraining, supervised fine-tuning, GRPO, and white-box distillation on the same HTTP task.
 
-[中文 README](README.md) · [Chinese walkthrough](docs/share.md) · [Recorded experiments](experiments/recorded/README.md)
+[中文 README](README.md) · [Chinese walkthrough](docs/share.md) · [Stage demos](experiments/README.md)
+
+Training code, commands, datasets, logs and screenshots are grouped into [pretraining](experiments/pretrain/README.md), [SFT](experiments/sft/README.md), [RL](experiments/rl/README.md), and [distillation](experiments/distillation/README.md). The stage index links to the comparisons that use several checkpoints.
 
 ## Setup
 

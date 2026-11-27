@@ -2,9 +2,9 @@
 
 面向前端开发者的 MiniMind 训练实验。从一条 HTTP 401 请求讲起，再用权限、冲突、限流和重试等场景对比预训练、SFT、GRPO 和蒸馏。纯 CE 对照用于判断多训练一轮和加入教师信号分别带来的变化。
 
-[中文分享稿](docs/share.md) · [English README](README_en.md) · [实跑记录](experiments/recorded/README.md)
+[中文分享稿](docs/share.md) · [English README](README_en.md) · [四阶段演示](experiments/README.md)
 
-![同一道 401 题在四份权重上的原始输出](experiments/recorded/expanded/screenshots/07-jupyter-one-question-four-stages.png)
+![同一道 401 题在四份权重上的原始输出](experiments/comparison/expanded/screenshots/07-jupyter-one-question-four-stages.png)
 
 ## 实验结果
 
@@ -17,26 +17,38 @@
 | GRPO | 格式通过与条件动作分别检查 | JSON 319/322，策略题从 33/66 降到 29/66 |
 | 蒸馏 | 教师分布距离和业务验收 | 相对纯 CE，平均 T² × KL 从 4.439 降到 1.987。策略题蒸馏 40/66，纯 CE 45/66 |
 
-上述数据来自本项目的合成 HTTP 任务。可查看[逐题预测](experiments/recorded/expanded/records/results.json)和[蒸馏分布对照](experiments/recorded/expanded/records/teacher_kl.json)。
+上述数据来自本项目的合成 HTTP 任务。可查看[逐题预测](experiments/comparison/expanded/records/results.json)和[蒸馏分布对照](experiments/distillation/evaluation/expanded/teacher_kl.json)。
 
-追加的 1.08B 教师实验使用相同的 13.522M RL 学生起点。1B 蒸馏学生在原 322 题上答对 **314** 道，同轮纯 CE 答对 **298** 道。在 48 道带干扰的新题上分别答对 **12** 道和 **23** 道。 [1B 实测结论](docs/share.md#1b-教师的-autodl-实测结论) · [原始记录](experiments/recorded/teacher-1b/records)
+追加的 1.08B 教师实验使用相同的 13.522M RL 学生起点。1B 蒸馏学生在原 322 题上答对 **314** 道，同轮纯 CE 答对 **298** 道。在 48 道带干扰的新题上分别答对 **12** 道和 **23** 道。 [1B 实测结论](docs/share.md#1b-教师的-autodl-实测结论) · [原始记录](experiments/distillation/records/teacher-1b)
 
 ## 项目结构
+
+按阶段打开演示，训练代码、命令、样本、日志和截图都在同一个目录。
+
+| 阶段 | 目录 |
+| --- | --- |
+| 预训练 | [experiments/pretrain](experiments/pretrain/README.md) |
+| SFT | [experiments/sft](experiments/sft/README.md) |
+| RL | [experiments/rl](experiments/rl/README.md) |
+| 蒸馏和纯 CE 对照 | [experiments/distillation](experiments/distillation/README.md) |
 
 ```text
 minimind-frontend/
 ├── model/                  MiniMind 模型与 tokenizer
 ├── dataset/                数据读取与标签掩码
-├── trainer/                预训练、SFT、GRPO、CE 和蒸馏
+├── trainer/                共享训练工具和兼容入口
 ├── scripts/                阶段权重串联、数据生成及推理评测
 ├── experiments/
 │   ├── run.py              统一复现入口
-│   ├── evaluate_scenarios.py  分场景评测与 48 道额外留出题
-│   ├── distill_1b.py       MiniCPM5-1B 微调与跨词表蒸馏对照
+│   ├── pretrain/           预训练代码、指令、数据、日志和截图
+│   ├── sft/                学生和教师的监督微调
+│   ├── rl/                 GRPO 训练与采样奖励
+│   ├── distillation/       蒸馏、纯 CE 对照和 1B 实验
+│   ├── comparison/         多阶段逐题结果、留出题和总对照图
+│   ├── evaluate_scenarios.py  分场景评测
 │   ├── verify.py           无需 GPU 的数据和结果校验
 │   ├── inputs.json         外部输入和 SHA-256
-│   ├── requirements.txt   实验依赖
-│   └── recorded/           四轮实测日志、结果、清单和截图
+│   └── requirements.txt   实验依赖
 └── docs/
     └── share.md            完整分享稿和可执行示例
 ```
@@ -64,6 +76,8 @@ python experiments/run.py expanded --prepare-only
 ```
 
 ## 复现实验
+
+演示单个阶段时，使用阶段目录里的 `commands.sh`。[四阶段的运行顺序](experiments/README.md)
 
 | 命令 | 执行内容 |
 | --- | --- |

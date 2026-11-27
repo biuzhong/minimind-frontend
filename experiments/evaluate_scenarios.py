@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.sharing_from_scratch import evaluate, jsonl, reference, save_json, weights
 
-RECORDED = Path(__file__).with_name("recorded") / "expanded" / "records"
+RECORDED = Path(__file__).with_name("comparison") / "expanded" / "records"
 
 # Each pair changes just the current status or one condition. Keep the original action vocabulary.
 CHALLENGE = {
